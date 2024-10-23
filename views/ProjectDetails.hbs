@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+</head>
+<body>
+    <!-- Liste over projektdata fra databasen -->
+    <ul>
+        {{#each projektInfomation}}
+        <li>
+            <h2>{{projektname}}</h2>
+            <p><strong>Subdomain:</strong> {{subdomain}}</p>
+            <p><strong>Mail:</strong> {{mail}}</p>
+            <p><strong>Template type:</strong> {{template_type}}</p>
+            <p><strong>Created date:</strong> {{created_date}}</p>
+            <p><strong>Status:</strong> {{status}}</p>
+        </li>
+        {{/each}}
+    </ul>
+</body>
+</html>
