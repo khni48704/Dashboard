@@ -24,7 +24,7 @@ const data = {
 };
 
 const getPostmanData = () => {
-    fetch("http://tasks.portainer_agent:9001", { // Prøv at ændre til HTTP, hvis muligt
+    fetch("http://tasks.portainer_agent:9001", {
         method: "GET"
     })
     .then((res) => {
@@ -35,8 +35,8 @@ const getPostmanData = () => {
     })
     .then((data) => {
         console.log(data);
-        arrangementer.value = data;
 
+        // Indsæt data i HTML-liste
         const datalist = document.getElementById('data-list');
         datalist.innerHTML = ""; 
         data.forEach(item => {
@@ -46,11 +46,10 @@ const getPostmanData = () => {
         });
     })
     .catch((err) => {
-        console.log(err);
-        error.value = "Kunne ikke hente data";
+        console.error("Fejl: ", err);
     });
 };
-// Kald funktionen for at hente data
+
 getPostmanData();
 
 
