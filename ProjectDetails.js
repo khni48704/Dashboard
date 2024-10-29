@@ -22,7 +22,37 @@ const data = {
         }
     ]
 };
-    
+
+const getPostmanData = () => {
+    fetch("http://tasks.portainer_agent:9001", { // Prøv at ændre til HTTP, hvis muligt
+        method: "GET"
+    })
+    .then((res) => {
+        if (!res.ok) {
+            throw new Error("Netværksrespons ikke ok");
+        }
+        return res.json();
+    })
+    .then((data) => {
+        console.log(data);
+        arrangementer.value = data;
+
+        const datalist = document.getElementById('data-list');
+        datalist.innerHTML = ""; 
+        data.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item.Name; 
+            datalist.appendChild(listItem);
+        });
+    })
+    .catch((err) => {
+        console.log(err);
+        error.value = "Kunne ikke hente data";
+    });
+};
+// Kald funktionen for at hente data
+getPostmanData();
+
 
 // Define a route to render a template
 app.get('/', (req, res) => {
