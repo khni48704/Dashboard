@@ -5,10 +5,15 @@
 
 
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3200;
 
 app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 const data = {
     projektInfomation: [
@@ -56,8 +61,19 @@ getPostmanData();
 
 // Define a route to render a template
 app.get('/', (req, res) => {
-    res.render('ProjectDetails', data);
+    res.render('home', data);
 });
+
+// Define a route to render a template
+app.get('/login', (req, res) => {
+    res.render('login', data);
+});
+
+app.get('/styles.css', (req, res) => {
+    res.type('text/css');
+    res.sendFile(path.join(__dirname, 'styles.css'));
+});
+
 
 app.listen(PORT, (err) => {
     if (err) {
