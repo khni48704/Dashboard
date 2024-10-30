@@ -1,5 +1,13 @@
+:root {
+    color-scheme: light dark;
+}
+
 * {
     font-family: "Roboto", sans-serif;
+}
+
+body {
+    background-color: light-dark(#FFFFFF, #121212);
 }
 
 
@@ -12,20 +20,20 @@ section {
 
 h1 {
     font-size: 36px;
-    color: #160F29;
+    color: light-dark(#160F29, #FFFFFF);
 }
 
 input {
     height: 53px;
     border-radius: 5px;
     width: 450px;
-    background-color: #F1F1F1;
+    background-color: light-dark(#F1F1F1, #282828);
     border-style: none;
     padding: 10px;
 }
 
 input::placeholder {
-    color: #160F29;
+    color: light-dark(#160F29, #FFFFFF);
     opacity: 0.5;
     font-size: 20px;
     font-weight: 500;
@@ -51,7 +59,7 @@ button {
 .login-divider {
     width: 100%;
     height: 1px;
-    background-color: #160F29;
+    background-color: light-dark(#160F29, #FFFFFF);
 }
 
 .divider-wrap {
