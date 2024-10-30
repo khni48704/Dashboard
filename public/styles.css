@@ -30,6 +30,7 @@ input {
     background-color: light-dark(#F1F1F1, #282828);
     border-style: none;
     padding: 10px;
+    font-size: 20px;
 }
 
 input::placeholder {
@@ -37,6 +38,10 @@ input::placeholder {
     opacity: 0.5;
     font-size: 20px;
     font-weight: 500;
+}
+
+input:focus {
+    outline-color: #B8BFFF;
 }
 
 button {
