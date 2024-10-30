@@ -24,15 +24,16 @@ const data = {
 };
 
 const getPostmanData = () => {
-    fetch("http://tasks.portainer_agent:9001", {
+    fetch("https://portainer.kubelab.dk/api/system/status", {
         method: "GET"
     })
     .then((res) => {
+        console.log(res);
         if (!res.ok) {
             throw new Error("Netværksrespons ikke ok");
         }
         return res.json();
-    })
+    })/*
     .then((data) => {
         console.log(data);
 
@@ -44,7 +45,7 @@ const getPostmanData = () => {
             listItem.textContent = item.Name; 
             datalist.appendChild(listItem);
         });
-    })
+    })*/
     .catch((err) => {
         console.error("Fejl: ", err);
     });
