@@ -1,0 +1,20 @@
+const UserModel = require('../models/UserModel');
+
+exports.getUsers = async (req, res) => {
+    try {
+        const users = await UserModel.getUsers();
+        res.render('index', { users });
+    } catch(error) {
+        res.status(500).send('Server Error');
+    }
+};
+
+exports.createUser = async (req, res) => {
+    try {
+        const {email, password} = req.body;
+        const users = await UserModel.createUser({ email, password});
+        res.redirect('/');
+    } catch(error) {
+        res.status(500).send('Server Error');
+    }
+};

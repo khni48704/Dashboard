@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.21.1",
     "exxpress": "^1.0.0",
-    "hbs": "^4.2.0"
+    "hbs": "^4.2.0",
+    "mysql2": "^3.11.3"
   }
 }

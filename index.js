@@ -5,16 +5,36 @@
 
 
 const express = require('express');
-const path = require('path');
+const path = require('node:path');
 const app = express();
+const bodyParser = require('body-parser');
+const webRoutes = require('./src/routes/web');
+const URL = process.env.URL || '0.0.0.0';
 const PORT = process.env.PORT || 3200;
 
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'src/views'));
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+app.use('/', webRoutes);
+
+
+app.listen(PORT, (err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(`Server is running on port ${PORT}`);
+    }
+});
+
+
+
+
+/*
 const data = {
     projektInfomation: [
         {
@@ -50,35 +70,27 @@ const getPostmanData = () => {
             listItem.textContent = item.Name; 
             datalist.appendChild(listItem);
         });
-    })*/
+    })*//*
     .catch((err) => {
         console.error("Fejl: ", err);
     });
 };
 
-getPostmanData();
-
+getPostmanData();*/
+/*
 
 // Define a route to render a template
 app.get('/', (req, res) => {
-    res.render('home', data);
+    res.render('index', data);
 });
 
+
 // Define a route to render a template
-app.get('/login', (req, res) => {
-    res.render('login', data);
+app.get('/ProjectDetails', (req, res) => {
+    res.render('ProjectDetails', data);
 });
 
 app.get('/styles.css', (req, res) => {
     res.type('text/css');
     res.sendFile(path.join(__dirname, 'styles.css'));
-});
-
-
-app.listen(PORT, (err) => {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log(`Server is running on port ${PORT}`);
-    }
-});
+});*/
