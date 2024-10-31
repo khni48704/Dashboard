@@ -10,4 +10,8 @@ router.get('/', (req, res) => {
     res.render('index.hbs'); // Sørg for at der er en 'index.hbs' skabelon i views-mappen
 });
 
+router.get('/createAccount', (req, res) => {
+    res.render('createAccount')
+});
+
 module.exports = router;
