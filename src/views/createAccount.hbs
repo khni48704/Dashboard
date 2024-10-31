@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubelab - Create account</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="styles"
+    />
+</head>
+<body>
+    <section>
+        <div>
+          <h1>Create new account</h1>
+          <form method="POST" action="/add-user">
+          <input type="text" name="first name" placeholder="First name" />
+          <br/><br/>
+          <input type="text" name="last name" placeholder="Last name" />
+          <br/><br/>
+          <input type="email" name="email" placeholder="E-mail" />
+          <br/><br/>
+          <input type="password" name="password" placeholder="Password" id="password" />
+          <br/><br/>
+          <input type="password" name="password" placeholder="Confirm password" id="confirm-password" />
+          <br/><br/>
+          <button>Create Account</button>
+          </div>
+    </section>
+    
+</body>
+</html>
+
+<script>
+    let password = document.getElementById("password"),
+        confirm_password = document.getElementById("confirm-password")
+
+    function validatePassword() {
+        if(password.value != confrom_password.value)
+    }
+
+</script>
