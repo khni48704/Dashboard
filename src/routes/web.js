@@ -1,13 +1,17 @@
 const express = require('express');
 const userController = require('../controllers/UserController');
+const projectController = require('../controllers/ProjectController');
 
 const router = express.Router();
 
 router.get('/users', userController.getUsers);
 router.post('/add-user', userController.createUser);
 
+router.get('/stacks', projectController.getStack);
+router.post('/add-project', projectController.createStack); 
+
 router.get('/', (req, res) => {
-    res.render('index.hbs'); // Sørg for at der er en 'index.hbs' skabelon i views-mappen
+    res.render('index.hbs');
 });
 
 router.get('/createAccount', (req, res) => {
