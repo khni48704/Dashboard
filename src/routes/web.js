@@ -18,4 +18,8 @@ router.get('/projects', (req, res) => {
     res.render('projects')
 });
 
+router.get('/createStack', (req, res) => {
+    res.render('createStack')
+});
+
 module.exports = router;
