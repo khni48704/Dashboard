@@ -11,8 +11,8 @@ exports.getUsers = async (req, res) => {
 
 exports.createUser = async (req, res) => {
     try {
-        const {email, password} = req.body;
-        const users = await UserModel.createUser({ email, password});
+        const {first_name, last_name, email, password} = req.body;
+        const users = await UserModel.createUser({first_name, last_name, email, password});
         res.redirect('/');
     } catch(error) {
         res.status(500).send('Server Error');
