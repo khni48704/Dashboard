@@ -23,6 +23,18 @@ h1 {
     color: light-dark(#160F29, #FFFFFF);
 }
 
+h2 {
+    font-size: 20px;
+    color: light-dark(#160F29, #FFFFFF);
+    margin: 0;
+}
+
+h4 {
+    font-size: 12px;
+    color: light-dark(#160F2960, #FFFFFF60);
+    margin: 0;
+}
+
 input {
     height: 53px;
     border-radius: 5px;
@@ -60,6 +72,12 @@ a {
     text-decoration: none;
 }
 
+.icon path {
+    stroke: light-dark(#160F29, #FFFFFF);
+  }
+  
+
+ /* LOGIN & CREATE ACCOUNT */
 
 .login-wrap {
     display: flex;
@@ -82,3 +100,14 @@ a {
 .no-wrap {
     text-wrap: nowrap;
 }
+
+ /* NAVIGATION */
+
+ .nav-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 20px;
+    border-bottom: solid;
+    border-color: light-dark(#160F2960, #FFFFFF60);
+ }
