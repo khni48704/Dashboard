@@ -10,6 +10,7 @@ router.post('/add-user', userController.createUser);
 router.get('/stacks', projectController.getStack);
 router.post('/add-project', projectController.createStack); 
 
+
 router.get('/', (req, res) => {
     res.render('index.hbs');
 });
@@ -21,6 +22,7 @@ router.get('/createAccount', (req, res) => {
 router.get('/projects', (req, res) => {
     res.render('projects')
 });
+
 
 router.get('/createStack', (req, res) => {
     res.render('createStack')
