@@ -55,6 +55,12 @@ button {
     font-weight: 500;
 }
 
+a {
+    color: #160F29;
+    text-decoration: none;
+}
+
+
 .login-wrap {
     display: flex;
     flex-direction: column;

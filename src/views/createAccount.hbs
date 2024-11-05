@@ -24,7 +24,7 @@
           <br/><br/>
           <input type="password" name="password" placeholder="Confirm password" id="confirm-password" required/>
           <br/><br/>
-          <button>Create Account</button>
+          <button type="submit">Create Account</button>
           </form>
           </div>
     </section>
@@ -37,7 +37,14 @@
         confirm_password = document.getElementById("confirm-password")
 
     function validatePassword() {
-        if(password.value != confrom_password.value)
+        if(password.value != confirm_password.value) {
+
+        confirm_password.setCustomValidity("Password does not match");
+        } else {
+            confirm_password.setCustomValidity("");
+        }
     }
 
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
 </script>
