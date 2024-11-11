@@ -11,6 +11,10 @@ body {
     padding: 10px;
 }
 
+.body-flex {
+    display: flex;
+}
+
 
 section {
     display: flex;
@@ -22,6 +26,7 @@ section {
 h1 {
     font-size: 36px;
     color: light-dark(#160F29, #FFFFFF);
+    margin-bottom: 10px;
 }
 
 h2 {
@@ -162,3 +167,76 @@ a {
  .nav-button:hover {
     background-color: light-dark(#FFFFFF, #121212);
  }
+
+
+  /* PROJECTS */
+
+.section-projects {
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0 32px;
+    width: 100%;
+    gap: 20px;
+}
+
+.search-field {
+    width: 100%;
+    border-radius: 100px;
+    padding-left: 20px;
+}
+
+.section-projects div {
+    width: -webkit-fill-available;
+    gap: 10px;
+}
+
+.switch-container  {
+    display: flex;
+    gap: 10px;
+}
+
+.switch-container button {
+    width: auto;
+    padding: 0 10px;
+    margin-top: 10px;
+}
+
+.projects-container {
+
+}
+
+.projects-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+.projects {
+    background-color: light-dark(#F1F1F1, #282828);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.projects-main-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tabel {
+    width: 33.33% !important;
+    display: flex;
+    align-items: center;
+}
+
+.status-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+}
