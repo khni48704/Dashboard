@@ -113,19 +113,21 @@
           <h4 class="tabel">URL</h4>
           <h4 class="status-container">Status</h4>
         </div>
+
         <div class="projects">
-          <div class="projects-main-details">
+          <div class="projects-main-details" onclick="toggleDropdown(this)">
             <h2 class="tabel">Projects_1</h2>
             <h2 class="tabel">kenneth.kubelab.dk</h2>
               <div class="status-container">
                 <div class="status">
-                  <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.6667 8.33333C16.6667 12.9357 12.9357 16.6667 8.33333 16.6667C3.73096 16.6667 0 12.9357 0 8.33333C0 3.73096 3.73096 0 8.33333 0C12.9357 0 16.6667 3.73096 16.6667 8.33333ZM5.91699 9.0835V7.74983C5.91699 6.48375 5.91699 5.85072 6.29679 5.59485C6.67656 5.339 7.19594 5.62206 8.23475 6.1882L8.23491 6.18828L9.45841 6.85517C10.7086 7.5365 11.3337 7.87717 11.3337 8.41667C11.3337 8.95617 10.7086 9.29683 9.45841 9.97817L8.23491 10.6451L8.23476 10.6452C7.19594 11.2113 6.67656 11.4943 6.29679 11.2385C5.91699 10.9826 5.91699 10.3496 5.91699 9.0835Z" fill="#53DD6C"/>
+                  <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="icon-stroke" d="M10.3333 18.8333C14.9357 18.8333 18.6667 15.1023 18.6667 10.5C18.6667 5.89759 14.9357 2.16663 10.3333 2.16663C5.73096 2.16663 2 5.89759 2 10.5C2 15.1023 5.73096 18.8333 10.3333 18.8333Z" stroke="white" stroke-width="1.25"/>
+                    <path class="icon-fill" d="M7.91663 9.81091V11.189C7.91663 12.4973 7.91663 13.1514 8.29643 13.4159C8.67621 13.6802 9.19563 13.3877 10.2345 12.8027L11.458 12.1135C12.7082 11.4095 13.3333 11.0575 13.3333 10.5C13.3333 9.94249 12.7082 9.59047 11.458 8.88642L10.2345 8.19731C9.19563 7.61224 8.67621 7.3197 8.29643 7.5841C7.91663 7.84849 7.91663 8.50263 7.91663 9.81091Z" fill="white"/>
                   </svg>
                   <h2>Running</h2>
                 </div>
               <svg class="icon" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11 1.00004C11 1.00004 7.31758 6 6 6C4.68233 6 1 1 1 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="icon-stroke" d="M11 1.00004C11 1.00004 7.31758 6 6 6C4.68233 6 1 1 1 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               </div>
           </div>
@@ -147,8 +149,9 @@
 
             <div class="dropdown-buttons">
               <a class="projects-button" href="">
-                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.6667 8.33333C16.6667 12.9357 12.9357 16.6667 8.33333 16.6667C3.73096 16.6667 0 12.9357 0 8.33333C0 3.73096 3.73096 0 8.33333 0C12.9357 0 16.6667 3.73096 16.6667 8.33333ZM5.91699 9.0835V7.74983C5.91699 6.48375 5.91699 5.85072 6.29679 5.59485C6.67656 5.339 7.19594 5.62206 8.23475 6.1882L8.23491 6.18828L9.45841 6.85517C10.7086 7.5365 11.3337 7.87717 11.3337 8.41667C11.3337 8.95617 10.7086 9.29683 9.45841 9.97817L8.23491 10.6451L8.23476 10.6452C7.19594 11.2113 6.67656 11.4943 6.29679 11.2385C5.91699 10.9826 5.91699 10.3496 5.91699 9.0835Z" fill="#53DD6C"/>
+                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.3333 18.8333C14.9357 18.8333 18.6667 15.1023 18.6667 10.5C18.6667 5.89759 14.9357 2.16663 10.3333 2.16663C5.73096 2.16663 2 5.89759 2 10.5C2 15.1023 5.73096 18.8333 10.3333 18.8333Z" stroke="black" stroke-width="1.25"/>
+                  <path d="M7.91663 9.81091V11.189C7.91663 12.4973 7.91663 13.1514 8.29643 13.4159C8.67621 13.6802 9.19563 13.3877 10.2345 12.8027L11.458 12.1135C12.7082 11.4095 13.3333 11.0575 13.3333 10.5C13.3333 9.94249 12.7082 9.59047 11.458 8.88642L10.2345 8.19731C9.19563 7.61224 8.67621 7.3197 8.29643 7.5841C7.91663 7.84849 7.91663 8.50263 7.91663 9.81091Z" fill="black"/>
                 </svg>
                 <h2>Start</h2>
               </a>
@@ -159,8 +162,9 @@
                 <h2>Restart</h2>
               </a>
               <a class="projects-button" href="">
-                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.6667 8.33333C16.6667 12.9357 12.9357 16.6667 8.33333 16.6667C3.73096 16.6667 0 12.9357 0 8.33333C0 3.73096 3.73096 0 8.33333 0C12.9357 0 16.6667 3.73096 16.6667 8.33333ZM7.25 5.83334C7.25 5.28106 6.80228 4.83334 6.25 4.83334C5.69772 4.83334 5.25 5.28106 5.25 5.83334V10.8333C5.25 11.3856 5.69772 11.8333 6.25 11.8333C6.80228 11.8333 7.25 11.3856 7.25 10.8333V5.83334ZM11.4167 5.83334C11.4167 5.28106 10.969 4.83334 10.4167 4.83334C9.86438 4.83334 9.41667 5.28106 9.41667 5.83334V10.8333C9.41667 11.3856 9.86438 11.8333 10.4167 11.8333C10.969 11.8333 11.4167 11.3856 11.4167 10.8333V5.83334Z" fill="#EF3E36"/>
+                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.99996 18.8333C14.6023 18.8333 18.3333 15.1023 18.3333 10.5C18.3333 5.89759 14.6023 2.16663 9.99996 2.16663C5.39759 2.16663 1.66663 5.89759 1.66663 10.5C1.66663 15.1023 5.39759 18.8333 9.99996 18.8333Z" stroke="black" stroke-width="1.25"/>
+                  <path d="M7.91663 8V13M12.0833 8V13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <h2>Stop</h2>
               </a>
@@ -177,8 +181,20 @@
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
   </body>
 </html>
+
+<script>
+    function toggleDropdown(element) {
+        const dropdown = element.nextElementSibling; // .projects-dropdown is the next sibling of .projects-main-details
+        if (dropdown.style.display === "flex") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "flex";
+        }
+    }
+</script>

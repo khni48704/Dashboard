@@ -39,7 +39,7 @@ h2 {
 h4 {
     font-size: 16px;
     font-weight: 500;
-    color: light-dark(#160F2960, #FFFFFF60);
+    color: light-dark(#160F2980, #FFFFFF80);
     margin: 0;
 }
 
@@ -229,13 +229,14 @@ a {
 
 .projects {
     background-color: light-dark(#F1F1F1, #282828);
-    padding: 10px;
     border-radius: 10px;
 }
 
 .projects-main-details {
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
+    padding: 10px;
 }
 
 .tabel {
@@ -261,8 +262,10 @@ a {
     flex-direction: column;
     border-top: 1px solid;
     border-color: light-dark(#160F29, #FFFFFF);
-    margin-top: 10px;
     gap: 20px !important;
+    margin: 0 10px 10px 10px;
+    padding-bottom: 10px;
+    display: none;
 }
 
 .info-wrap {
@@ -305,4 +308,28 @@ a {
 
 #delete-button h2 {
     color: #FFFFFF;
+}
+
+.projects:hover {
+    background-color: #B8BFFF;
+}
+
+.projects:hover h2 {
+    color: #160F29;
+}
+
+.projects:hover h4 {
+    color: #160F2970;
+}
+
+.projects:hover .projects-dropdown {
+    border-color: #160F29;
+}
+
+.projects:hover .icon-stroke {
+    stroke: #160F29;
+}
+
+.projects:hover .icon-fill {
+    fill: #160F29;
 }
