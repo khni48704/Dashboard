@@ -64,6 +64,20 @@ input:focus {
     outline-color: #B8BFFF;
 }
 
+select {
+    height: 53px;
+    border-radius: 5px;
+    width: 450px;
+    background-color: light-dark(#F1F1F1, #282828);
+    border-style: none;
+    padding: 10px;
+    font-size: 20px;
+}
+
+select:focus {
+    outline-color: #B8BFFF;
+}
+
 button {
     height: 45px;
     border-radius: 20px;

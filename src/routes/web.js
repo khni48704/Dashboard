@@ -28,4 +28,20 @@ router.get('/createStack', (req, res) => {
     res.render('createStack')
 });
 
+router.get('/createTemplate', (req, res) => {
+    res.render('createTemplate')
+})
+
+router.get('/templates', (req, res) => {
+    res.render('templates')
+})
+
+router.get('/groups', (req, res) => {
+    res.render('groups')
+})
+
+router.get('/createGroup', (req, res) => {
+    res.render('createGroup')
+})
+
 module.exports = router;
