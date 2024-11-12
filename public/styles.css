@@ -225,7 +225,7 @@ a {
 }
 
 .tabel {
-    width: 33.33% !important;
+    width: 42.5% !important;
     display: flex;
     align-items: center;
 }
@@ -234,9 +234,33 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 15% !important;
 }
 
 .status {
     display: flex;
     align-items: center;
+}
+
+.projects-details {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid;
+    border-color: light-dark(#160F29, #FFFFFF);
+    margin-top: 10px;
+    gap: 20px;
+}
+
+.info-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.info-box {
+    width: 42.5% !important;
+}
+
+.info-box-2 {
+    width: 15% !important;
 }
