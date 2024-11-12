@@ -256,13 +256,13 @@ a {
     align-items: center;
 }
 
-.projects-details {
+.projects-dropdown {
     display: flex;
     flex-direction: column;
     border-top: 1px solid;
     border-color: light-dark(#160F29, #FFFFFF);
     margin-top: 10px;
-    gap: 20px;
+    gap: 20px !important;
 }
 
 .info-wrap {
@@ -277,4 +277,32 @@ a {
 
 .info-box-2 {
     width: 15% !important;
+}
+
+.dropdown-buttons {
+    display: flex;
+    gap: 20px !important;
+}
+
+.projects-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+    border-radius: 25px;
+    background-color: #FFFFFF;
+    width: -webkit-fill-available;
+}
+
+.projects-button h2 {
+    color: #160F29;
+}
+
+#delete-button {
+    background-color: #EF3E36;
+}
+
+#delete-button h2 {
+    color: #FFFFFF;
 }
