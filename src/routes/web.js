@@ -36,4 +36,12 @@ router.get('/templates', (req, res) => {
     res.render('templates')
 })
 
+router.get('/groups', (req, res) => {
+    res.render('groups')
+})
+
+router.get('/createGroup', (req, res) => {
+    res.render('createGroup')
+})
+
 module.exports = router;
