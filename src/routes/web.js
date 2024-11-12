@@ -28,4 +28,12 @@ router.get('/createStack', (req, res) => {
     res.render('createStack')
 });
 
+router.get('/createTemplate', (req, res) => {
+    res.render('createTemplate')
+})
+
+router.get('/templates', (req, res) => {
+    res.render('templates')
+})
+
 module.exports = router;
