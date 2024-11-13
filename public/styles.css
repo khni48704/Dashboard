@@ -36,6 +36,11 @@ h2 {
     margin: 0;
 }
 
+p {
+    font-size: 16px;
+    margin: 0;
+}
+
 h4 {
     font-size: 16px;
     font-weight: 500;
@@ -46,7 +51,7 @@ h4 {
 input {
     height: 53px;
     border-radius: 5px;
-    width: 450px;
+    max-width: 450px;
     background-color: light-dark(#F1F1F1, #282828);
     border-style: none;
     padding: 10px;
@@ -81,7 +86,7 @@ select:focus {
 button {
     height: 45px;
     border-radius: 20px;
-    width: 100%;
+    max-width: 450px;
     border-style: none;
     background-color: #B8BFFF;
     font-size: 20px;
@@ -186,7 +191,7 @@ a {
 
   /* PROJECTS */
 
-.section-projects {
+.section-main {
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
@@ -201,7 +206,7 @@ a {
     padding-left: 20px;
 }
 
-.section-projects div {
+.section-main div {
     width: -webkit-fill-available;
     gap: 10px;
 }
@@ -215,10 +220,6 @@ a {
     width: auto;
     padding: 0 10px;
     margin-top: 10px;
-}
-
-.projects-container {
-
 }
 
 .projects-label {
@@ -256,6 +257,7 @@ a {
 .status {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .projects-dropdown {
@@ -333,4 +335,32 @@ a {
 
 .projects:hover .icon-fill {
     fill: #160F29;
+}
+
+/* user */
+
+.flex-div {
+    display: flex;
+    gap: 40px !important;
+}
+
+.default-div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px !important;
+    max-width: 450px;
+}
+
+.section-secondary {
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0 32px;
+    width: 100%;
+    gap: 40px;  
+}
+
+.section-secondary div {
+    width: -webkit-fill-available;
+    gap: 10px;
 }
