@@ -23,7 +23,6 @@ router.get('/projects', (req, res) => {
     res.render('projects')
 });
 
-
 router.get('/createStack', (req, res) => {
     res.render('createStack')
 });
@@ -42,6 +41,10 @@ router.get('/groups', (req, res) => {
 
 router.get('/createGroup', (req, res) => {
     res.render('createGroup')
+})
+
+router.get('/user', (req, res) => {
+    res.render('user')
 })
 
 module.exports = router;

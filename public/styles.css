@@ -92,6 +92,7 @@ button {
 a {
     color: #160F29;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .icon path {
@@ -170,11 +171,11 @@ a {
     background-color: #B8BFFF;
  }
 
- #selected-icon path {
+ #selected-btn path {
     stroke: #160F29;
  }
 
- #selected-text {
+ #selected-btn h2 {
     color: #160F29;
  }
 
