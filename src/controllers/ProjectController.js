@@ -13,7 +13,7 @@ exports.createStack = async (req, res) => {
     try {
         const {project_name, url} = req.body;
         const stacks = await ProjectModel.createStack({project_name, url});
-        res.redirect('/projects');
+       // res.redirect('/projects');
     } catch(error) {
         res.status(500).send('Server Error');
     }

@@ -309,6 +309,14 @@ a {
     background-color: #EF3E36;
 }
 
+#delete-button-animation {
+    transition: transform 0.3s ease, fill 0.3s ease;
+  }
+
+  a:hover #delete-button-animation {
+    transform: scale(1.1); 
+  }
+
 #delete-button h2 {
     color: #FFFFFF;
 }
@@ -335,6 +343,23 @@ a {
 
 .projects:hover .icon-fill {
     fill: #160F29;
+}
+
+/*restart animation*/
+a:hover #restart-animation {
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* user */
@@ -364,3 +389,15 @@ a {
     width: -webkit-fill-available;
     gap: 10px;
 }
+
+.myProgress {
+    width: 100%;
+    background-color: #ddd;
+  }
+  
+  #create_animation {
+    margin-top: 24px;
+    width: 0.5%;
+    height: 20px;
+    background-color: #B8BFFF;
+  }
