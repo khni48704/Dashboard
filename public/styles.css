@@ -242,7 +242,7 @@ a {
 }
 
 .tabel {
-    width: 42.5% !important;
+    width: 27.5% !important;
     display: flex;
     align-items: center;
 }
@@ -278,7 +278,7 @@ a {
 }
 
 .info-box {
-    width: 42.5% !important;
+    width: 27.5% !important;
 }
 
 .info-box-2 {
@@ -298,7 +298,7 @@ a {
     gap: 10px;
     border-radius: 25px;
     background-color: #FFFFFF;
-    width: -webkit-fill-available;
+    width: 27.5%;
 }
 
 .projects-button h2 {
@@ -307,6 +307,7 @@ a {
 
 #delete-button {
     background-color: #EF3E36;
+    width: 15%;
 }
 
 #delete-button-animation {
