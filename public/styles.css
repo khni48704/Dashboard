@@ -341,7 +341,7 @@ a {
 
 .flex-div {
     display: flex;
-    gap: 40px !important;
+    gap: 60px !important;
 }
 
 .default-div {
