@@ -55,4 +55,4 @@ document.getElementById('login_btn').addEventListener('click', () => {
       messageElement.textContent = 'Der opstod en fejl. Prøv igen.';
       messageElement.style.color = 'red';
   });
-});
+}); 

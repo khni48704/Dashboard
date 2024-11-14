@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/users', userController.getUsers);
 router.post('/add-user', userController.createUser);
+//*router.post('/login', userController.loginUser); //ny linje slet hvis ikke virker
 
 router.get('/stacks', projectController.getStack);
 router.post('/add-project', projectController.createStack); 
