@@ -309,6 +309,14 @@ a {
     background-color: #EF3E36;
 }
 
+#delete-button-animation {
+    transition: transform 0.3s ease, fill 0.3s ease;
+  }
+
+  a:hover #delete-button-animation {
+    transform: scale(1.1); 
+  }
+
 #delete-button h2 {
     color: #FFFFFF;
 }
