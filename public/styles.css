@@ -389,3 +389,15 @@ a:hover #restart-animation {
     width: -webkit-fill-available;
     gap: 10px;
 }
+
+.myProgress {
+    width: 100%;
+    background-color: #ddd;
+  }
+  
+  #create_animation {
+    margin-top: 24px;
+    width: 1%;
+    height: 20px;
+    background-color: #B8BFFF;
+  }
