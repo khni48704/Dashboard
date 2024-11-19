@@ -48,4 +48,8 @@ router.get('/user', (req, res) => {
     res.render('user')
 })
 
+router.get('/navigation', (req, res) => {
+    res.render('navigation')
+});
+
 module.exports = router;

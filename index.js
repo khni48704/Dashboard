@@ -11,6 +11,11 @@ const bodyParser = require('body-parser');
 const webRoutes = require('./src/routes/web');
 const URL = process.env.URL || '0.0.0.0';
 const PORT = process.env.PORT || 3200;
+const exphbs = require('express-handlebars');
+app.engine('hbs', exphbs.engine({
+    extname: '.hbs',
+    defaultLayout: false
+}))
 
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'src/views'));
@@ -30,9 +35,6 @@ app.listen(PORT, (err) => {
         console.log(`Server is running on port ${PORT}`);
     }
 });
-
-
-
 
 /*
 const data = {
