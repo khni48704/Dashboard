@@ -3,7 +3,7 @@ const ProjectModel = require('../models/ProjectModel');
 exports.getStack = async (req, res) => {
     try {
         const stacks = await ProjectModel.getStack();
-        res.render('createStack.hbs', {stacks});
+        res.render('projects', {stacks});
     } catch(error) {
         res.status(500).send('Server Error');
     }

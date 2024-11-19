@@ -10,6 +10,7 @@ router.post('/login', userController.loginUser); //ny linje slet hvis ikke virke
 
 router.get('/stacks', projectController.getStack);
 router.post('/add-project', projectController.createStack); 
+router.get('/projects', projectController.getStack);
 
 
 router.get('/', (req, res) => {
