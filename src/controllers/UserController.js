@@ -20,20 +20,22 @@ exports.createUser = async (req, res) => {
 };
 
 
-/* Login og konsolog ok, hvis bruger eksitere i db
+//Login og konsolog ok, hvis bruger eksitere i db
 exports.loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    let email = req.body.email;
+    let password = req.body.password;
+    console.log(email);
     const user = await UserModel.findUserByEmailAndPassword(email, password);
 
     if (user) {
       console.log("OK");
-      res.status(200).send("Login successful!"); 
+      res.status(200).json({ message: `Velkommen ${email}` });
     } else {
-      res.status(401).send("Invalid email or password");
+      res.status(401).json({ message: "Invalid email or password" });
     }
   } catch (error) {
     console.log(error);
     res.status(500).send('Server Error');
   }
-};*/
+};

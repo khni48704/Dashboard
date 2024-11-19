@@ -19,7 +19,8 @@ exports.createUser = async (user) => {
     return result;
   };
 
-/* Nye kode finder bruger på email og password
+/* Nye kode finder bruger på email og password*/
+
 exports.findUserByEmailAndPassword = async (email, password) => {
   const [rows] = await db.query('SELECT * FROM Users WHERE email = ? AND password = ?', [email, password]);
   
@@ -29,4 +30,3 @@ exports.findUserByEmailAndPassword = async (email, password) => {
   
   return null;
 };
-*/
