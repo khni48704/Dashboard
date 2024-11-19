@@ -1,13 +1,24 @@
 :root {
-    color-scheme: light dark;
-}
-
-* {
-    font-family: "Roboto", sans-serif;
+    --background-light: #FFFFFF;
+    --background-dark: #121212;
+    --text-light: #160F29;
+    --text-dark: #FFFFFF;
+    --text-muted-light: rgba(22, 15, 41, 0.5);
+    --text-muted-dark: rgba(255, 255, 255, 0.5);
+    --divider-light: rgba(22, 15, 41, 0.38);
+    --divider-dark: rgba(255, 255, 255, 0.38);
+    --input-bg-light: #F1F1F1;
+    --input-bg-dark: #282828;
+    --button-bg: #B8BFFF;
+    --button-text: #160F29;
+    --hover-light: #FFFFFF;
+    --hover-dark: #121212;
 }
 
 body {
-    background-color: light-dark(#FFFFFF, #121212);
+    background-color: var(--background-light);
+    color: var(--text-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
     padding: 10px;
 }
 
@@ -15,36 +26,49 @@ body {
     display: flex;
 }
 
+body.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
 
-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+* {
+    font-family: "Roboto", sans-serif;
 }
 
 h1 {
     font-size: 36px;
-    color: light-dark(#160F29, #FFFFFF);
+    color: var(--text-light);
     margin-bottom: 10px;
+}
+
+body.dark-mode h1 {
+    color: var(--text-dark);
 }
 
 h2 {
     font-size: 20px;
     font-weight: 500;
-    color: light-dark(#160F29, #FFFFFF);
+    color: var(--text-light);
     margin: 0;
 }
 
-p {
-    font-size: 16px;
-    margin: 0;
+body.dark-mode h2 {
+    color: var(--text-dark);
 }
 
 h4 {
     font-size: 16px;
     font-weight: 500;
-    color: light-dark(#160F2980, #FFFFFF80);
+    color: var(--text-muted-light);
+    margin: 0;
+}
+
+body.dark-mode h4 {
+    color: var(--text-muted-dark);
+}
+
+p {
+    font-size: 16px;
     margin: 0;
 }
 
@@ -54,149 +78,138 @@ form {
     gap: 20px
 }
 
-input {
+
+
+input, select {
     height: 53px;
     border-radius: 5px;
     max-width: 450px;
-    background-color: light-dark(#F1F1F1, #282828);
-    border-style: none;
+    background-color: var(--input-bg-light);
+    border: none;
     padding: 10px;
     font-size: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode input, 
+body.dark-mode select {
+    background-color: var(--input-bg-dark);
 }
 
 input::placeholder {
-    color: light-dark(#160F29, #FFFFFF);
-    opacity: 0.5;
-    font-size: 20px;
-    font-weight: 500;
+    color: var(--text-muted-light);
 }
 
-input:focus {
-    outline-color: #B8BFFF;
+body.dark-mode input::placeholder {
+    color: var(--text-muted-dark);
 }
 
-select {
-    height: 53px;
-    border-radius: 5px;
-    width: 450px;
-    background-color: light-dark(#F1F1F1, #282828);
-    border-style: none;
-    padding: 10px;
-    font-size: 20px;
-}
-
-select:focus {
-    outline-color: #B8BFFF;
+input:focus, select:focus {
+    outline-color: var(--button-bg);
 }
 
 button {
     height: 45px;
     border-radius: 20px;
     max-width: 450px;
-    border-style: none;
-    background-color: #B8BFFF;
+    border: none;
+    background-color: var(--button-bg);
     font-size: 20px;
-    color: #160F29;
+    color: var(--button-text);
     font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
-    color: #160F29;
+    color: var(--text-light);
     text-decoration: none;
     cursor: pointer;
 }
 
+body.dark-mode a {
+    color: var(--text-dark);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .icon path {
-    stroke: light-dark(#160F29, #FFFFFF);
-  }
-  
-
- /* LOGIN & CREATE ACCOUNT */
-
-.login-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
+    stroke: var(--text-light);
 }
 
-.login-divider {
-    width: 100%;
-    height: 1px;
-    background-color: light-dark(#160F29, #FFFFFF);
+body.dark-mode .icon path {
+    stroke: var(--text-dark);
 }
 
-.divider-wrap {
+section {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    height: 100%;
 }
 
-.no-wrap {
-    text-wrap: nowrap;
-}
-
- /* NAVIGATION */
-
- nav {
-    background-color: light-dark(#F1F1F1, #282828);
+/* Navigation */
+nav {
+    background-color: var(--input-bg-light);
     height: 100%;
     width: fit-content;
     border-radius: 25px;
- }
- 
- .nav-padding {
+}
+
+body.dark-mode nav {
+    background-color: var(--input-bg-dark);
+}
+
+.nav-padding {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: -webkit-fill-available;
     padding: 20px 16px;
+}
 
- }
-
- .nav-user {
+.nav-user {
     display: flex;
     align-items: center;
     gap: 10px;
     padding-bottom: 20px;
     margin-bottom: 20px;
     border-bottom: solid;
-    border-color: light-dark(#160F2960, #FFFFFF60);
- }
+    border-color: var(--divider-light);
+}
 
- .nav-list {
+body.dark-mode .nav-user {
+    border-color: var(--divider-dark);
+}
+
+.nav-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
- }
+}
 
- .nav-button {
+.nav-button {
     display: flex;
     align-items: center;
     width: 200px;
     gap: 10px;
     padding: 10px;
-    border-radius: 10px; 
- }
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
- #selected-btn {
-    background-color: #B8BFFF;
- }
+.nav-button:hover {
+    background-color: var(--hover-light);
+}
 
- #selected-btn path {
-    stroke: #160F29;
- }
+body.dark-mode .nav-button:hover {
+    background-color: var(--hover-dark);
+}
 
- #selected-btn h2 {
-    color: #160F29;
- }
-
- .nav-button:hover {
-    background-color: light-dark(#FFFFFF, #121212);
- }
-
-
-  /* PROJECTS */
-
+/* Projects Section */
 .section-main {
     justify-content: flex-start;
     align-items: flex-start;
@@ -237,8 +250,9 @@ a {
 }
 
 .projects {
-    background-color: light-dark(#F1F1F1, #282828);
+    background-color: var(--input-bg-light);
     border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .projects-main-details {
@@ -249,7 +263,7 @@ a {
 }
 
 .tabel {
-    width: 27.5% !important;
+    width: 27.5%;
     display: flex;
     align-items: center;
 }
@@ -267,21 +281,50 @@ a {
     gap: 10px;
 }
 
+body.dark-mode .projects {
+    background-color: var(--input-bg-dark);
+}
+
+body.darkmode .projects:hover {
+    background-color: var(--button-bg);
+}
+
+.projects:hover {
+    background-color: var(--button-bg);
+}
+
+.projects:hover h2 {
+    color: var(--button-text);
+}
+
+.projects:hover h4 {
+    color: var(--text-muted-light);
+}
+
+body.dark-mode .projects:hover h4 {
+    color: var(--text-muted-dark);
+}
+
 .projects-dropdown {
     display: flex;
     flex-direction: column;
+    display: none;
     border-top: 1px solid;
-    border-color: light-dark(#160F29, #FFFFFF);
+    border-color: var(--divider-light);
     gap: 20px !important;
     margin: 0 10px 10px 10px;
     padding-bottom: 10px;
-    display: none;
+}
+
+body.dark-mode .projects-dropdown {
+    border-color: var(--divider-dark);
 }
 
 .info-wrap {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    width: 27.5%;
 }
 
 .info-box {
@@ -304,12 +347,21 @@ a {
     padding: 10px;
     gap: 10px;
     border-radius: 25px;
-    background-color: #FFFFFF;
     width: 27.5%;
+    background-color: var(--hover-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .projects-button {
+    background-color: var(--hover-light);
 }
 
 .projects-button h2 {
-    color: #160F29;
+    color: var(--text-light);
+}
+
+body.dark-mode .projects-button h2 {
+    color: var(--text-light);
 }
 
 #delete-button {
@@ -317,43 +369,11 @@ a {
     width: 15%;
 }
 
-#delete-button-animation {
-    transition: transform 0.3s ease, fill 0.3s ease;
-  }
-
-  a:hover #delete-button-animation {
-    transform: scale(1.1); 
-  }
-
 #delete-button h2 {
-    color: #FFFFFF;
+    color: var(--text-dark);
 }
 
-.projects:hover {
-    background-color: #B8BFFF;
-}
-
-.projects:hover h2 {
-    color: #160F29;
-}
-
-.projects:hover h4 {
-    color: #160F2970;
-}
-
-.projects:hover .projects-dropdown {
-    border-color: #160F29;
-}
-
-.projects:hover .icon-stroke {
-    stroke: #160F29;
-}
-
-.projects:hover .icon-fill {
-    fill: #160F29;
-}
-
-/*restart animation*/
+/* Animation */
 a:hover #restart-animation {
     animation-name: spin;
     animation-duration: 2000ms;
@@ -369,8 +389,6 @@ a:hover #restart-animation {
         transform: rotate(360deg);
     }
 }
-
-/* user */
 
 .flex-div {
     display: flex;

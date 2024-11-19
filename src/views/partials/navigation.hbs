@@ -68,6 +68,9 @@
             <path d="M21 13.7972C19.7372 14.5051 18.2948 14.9065 16.7633 14.9065C11.7885 14.9065 7.75571 10.672 7.75571 5.44852C7.75571 3.84037 8.13795 2.32596 8.81224 1C4.33437 2.10193 1 6.32199 1 11.3597C1 17.2362 5.53695 22 11.1336 22C15.9315 22 19.9505 18.499 21 13.7972Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <h2>Dark mode</h2>
+
+          <button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
+
         </a>
 
         <a class="nav-button">
@@ -80,3 +83,26 @@
         </div>
   
     </nav>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    // Check saved theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+        body.classList.add(savedTheme);
+        themeToggle.textContent = savedTheme === "dark-mode" ? "☀️" : "🌙";
+    }
+
+    themeToggle.addEventListener("click", () => {
+        const isDarkMode = body.classList.toggle("dark-mode");
+        themeToggle.textContent = isDarkMode ? "☀️" : "🌙";
+
+        // Save theme preference
+        localStorage.setItem("theme", isDarkMode ? "dark-mode" : "light-mode");
+    });
+});
+
+    </script>
