@@ -35,9 +35,11 @@
           <h4 class="status-container">Status</h4>
         </div>
 
+    {{#each stacks}}
+
         <div class="projects">
           <div class="projects-main-details" onclick="toggleDropdown(this)">
-            <h2 class="tabel">{{project_name}}</h2>
+            <h2 class="tabel">{{this.project_name}}</h2>
             <h2 class="tabel">ksma4320</h2>
             <h2 class="tabel">WUOE24</h2>
               <div class="status-container">
@@ -61,7 +63,7 @@
               </div>
               <div class="info-box">
                 <h4>URL</h4>
-                <h2>{{URL}}</h2>
+                <h2>{{this.url}}</h2>
               </div>
               <div class="info-box">
                 <h4>Template type</h4>
@@ -69,7 +71,7 @@
               </div>
               <div class="info-box-2">
                 <h4>Created date</h4>
-                <h2>04-29-2024</h2>
+                <h2>{{this.create_date}}</h2>
               </div>
             </div>
 
@@ -107,9 +109,11 @@
             </div>
           </div>
         </div>
+        {{/each}}
 
       </div>
     </section>
+  
 
   </body>
 </html>

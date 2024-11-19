@@ -10,6 +10,7 @@ router.post('/add-user', userController.createUser);
 
 router.get('/stacks', projectController.getStack);
 router.post('/add-project', projectController.createStack); 
+router.get('/projects', projectController.getStack);
 
 
 router.get('/', (req, res) => {
