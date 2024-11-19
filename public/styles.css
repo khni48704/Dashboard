@@ -285,7 +285,7 @@ body.dark-mode .projects {
     background-color: var(--input-bg-dark);
 }
 
-body.darkmode .projects:hover {
+body.dark-mode .projects:hover {
     background-color: var(--button-bg);
 }
 
@@ -302,8 +302,17 @@ body.darkmode .projects:hover {
 }
 
 body.dark-mode .projects:hover h4 {
-    color: var(--text-muted-dark);
+    color: var(--text-muted-light);
 }
+
+.projects:hover .icon-stroke {
+    stroke: #160F29;
+}
+
+.projects:hover .icon-fill {
+    fill: #160F29;
+}
+
 
 .projects-dropdown {
     display: flex;
