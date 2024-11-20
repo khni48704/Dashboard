@@ -24,7 +24,7 @@ exports.loginUser = async (req, res) => {
   try {
       let email = req.body.email;
       let password = req.body.password;
-      console.log('Attempting to log in:', { email, password });
+      console.log('Logget ind via:', { email, password });
 
       const user = await UserModel.findUserByEmailAndPassword(email, password);
       if (user) {
