@@ -30,10 +30,12 @@ exports.loginUser = async (req, res) => {
       if (user) {
           res.redirect('/projects');
       } else {
-          res.status(401).json({ message: "Invalid email or password" });
+          //res.status(401).json({ message: "Invalid email or password" });
+          res.render('index', { error: "Invalid email or password" });
       }
   } catch (error) {
       console.error(error);
-      res.status(500).send('Server Error');
+      //res.status(500).send('Server Error');
+      res.status(500).render('index', { error: 'Server Error. Prøv igen senere.' });
   }
 };
