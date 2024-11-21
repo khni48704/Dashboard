@@ -16,7 +16,7 @@
         <div>
           <h1>KubeLab</h1>
           
-             <form method="POST" action="/login">
+             <form id="form_login" method="POST" action="/login">
           <input id="email" type="text" name="email" placeholder="E-mail" />
           <br /><br />
           <input id="password" type="password" name="password" placeholder="Password" />
@@ -36,3 +36,32 @@
     </section>
   </body>
 </html>
+<script>
+   const loginForm = document.getElementById('form_login');
+        loginForm.addEventListener('submit', async (error) => {
+            error.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem('token', data.token); 
+                    console.log('Login succesfuldt!');
+                    window.location.href = '/projects';
+                } else {
+                    console.log('Forkert e-mail eller adgangskode.');
+                }
+            } catch (error) {
+                console.error('Fejl:', error);
+                console.log('Noget gik galt. Prøv igen senere.');
+            }
+        });
+</script>

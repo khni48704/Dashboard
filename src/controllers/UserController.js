@@ -1,4 +1,6 @@
 const UserModel = require('../models/UserModel');
+const jwt = require('jsonwebtoken');
+const key = 'key';
 
 exports.getUsers = async (req, res) => {
     try {
@@ -28,7 +30,13 @@ exports.loginUser = async (req, res) => {
 
       const user = await UserModel.findUserByEmailAndPassword(email, password);
       if (user) {
-          res.redirect('/projects');
+        const token = jwt.sign(
+            {id: user.id, email: user.email},
+            key,
+            {expiresIn: '5m'}
+        );
+        return res.json({ token });
+          //res.redirect('/projects');
       } else {
           //res.status(401).json({ message: "Invalid email or password" });
           res.render('index', { error: "Invalid email or password" });

@@ -12,6 +12,9 @@ const webRoutes = require('./src/routes/web');
 const URL = process.env.URL || '0.0.0.0';
 const PORT = process.env.PORT || 3200;
 const exphbs = require('express-handlebars');
+const jwt = require('jsonwebtoken');
+const key = 'key';
+
 app.engine('hbs', exphbs.engine({
     extname: '.hbs',
     defaultLayout: false
@@ -34,6 +37,25 @@ app.listen(PORT, (err) => {
     } else {
         console.log(`Server is running on port ${PORT}`);
     }
+});
+
+/*JWT */
+const authenticateToken = (req, res, next) => {
+    const token = req.headers['authorization']?.split(' ')[1];
+    if (!token) {
+        return res.status(401).json({ error: 'Adgang nægtet. Ingen token leveret.' });
+    }
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) {
+            return res.status(403).json({ error: 'Token er ugyldig eller udløbet.' });
+        }
+        req.user = user;
+        next();
+    });
+};
+
+app.get('/protected', authenticateToken, (req, res) => {
+    res.json({ message: 'Velkommen til den beskyttede rute!', user: req.user });
 });
 
 /*
