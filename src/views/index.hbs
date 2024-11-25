@@ -37,11 +37,12 @@
   </body>
 </html>
 <script>
+  var email;
    const loginForm = document.getElementById('form_login');
         loginForm.addEventListener('submit', async (error) => {
             error.preventDefault();
 
-            const email = document.getElementById('email').value;
+            email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
             try {
@@ -54,7 +55,8 @@
                 if (response.ok) {
                     const data = await response.json();
                     localStorage.setItem('token', data.token);
-                    localStorage.setItem('email', email);                    
+                    localStorage.setItem('email', email); 
+                    //console.log(email);                   
                     console.log('Login succesfuldt!');
                     window.location.href = '/projects';
                 } else {

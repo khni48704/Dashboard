@@ -30,7 +30,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', webRoutes);
 
-
 app.listen(PORT, (err) => {
     if (err) {
         console.log(err);
@@ -58,7 +57,6 @@ app.get('/protected', authenticateToken, (req, res) => {
     res.json({ message: 'Velkommen til den beskyttede rute!', user: req.user });
 });
 
-
 /*
 const data = {
     projektInfomation: [
@@ -83,7 +81,7 @@ const getPostmanData = () => {
             throw new Error("Netværksrespons ikke ok");
         }
         return res.json();
-    })/*
+    })
     .then((data) => {
         console.log(data);
 
@@ -95,13 +93,13 @@ const getPostmanData = () => {
             listItem.textContent = item.Name; 
             datalist.appendChild(listItem);
         });
-    })*//*
+    })
     .catch((err) => {
         console.error("Fejl: ", err);
     });
 };
 
-getPostmanData();*/
+getPostmanData();
 /*
 
 // Define a route to render a template
