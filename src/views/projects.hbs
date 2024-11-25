@@ -127,4 +127,21 @@
             dropdown.style.display = "flex";
         }
     }
+
+    if (localStorage.getItem('token') && localStorage.getItem('email')) {
+    fetch('/projects', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'X-User-Email': localStorage.getItem('email')  // Send e-mail som header
+        },
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Fejl:', error));
+} else {
+    console.log('Bruger er ikke logget ind!');
+    window.location.href = '/login';  // Hvis ikke logget ind, send brugeren til login
+}
 </script>

@@ -2,6 +2,10 @@ const UserModel = require('../models/UserModel');
 const jwt = require('jsonwebtoken');
 const key = 'key';
 
+let jwtUser;
+
+
+
 exports.getUsers = async (req, res) => {
     try {
         const users = await UserModel.getUsers();
@@ -35,6 +39,7 @@ exports.loginUser = async (req, res) => {
             key,
             {expiresIn: '5m'}
         );
+        console.log(token);
         return res.json({ token });
           //res.redirect('/projects');
       } else {
@@ -47,3 +52,4 @@ exports.loginUser = async (req, res) => {
       res.status(500).render('index', { error: 'Server Error. Prøv igen senere.' });
   }
 };
+

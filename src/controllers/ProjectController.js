@@ -2,9 +2,14 @@ const ProjectModel = require('../models/ProjectModel');
 
 exports.getStack = async (req, res) => {
     try {
-        const stacks = await ProjectModel.getStack();
+        const email = req.headers['x-user-email'];
+        if (!email) {
+            return res.status(401).send('Bruger ikke logget ind');
+        }
+        const stacks = await ProjectModel.getStack(email);
         res.render('projects', {stacks});
     } catch(error) {
+        console.log("fejl");
         res.status(500).send('Server Error');
     }
 }

@@ -58,6 +58,7 @@ app.get('/protected', authenticateToken, (req, res) => {
     res.json({ message: 'Velkommen til den beskyttede rute!', user: req.user });
 });
 
+
 /*
 const data = {
     projektInfomation: [
