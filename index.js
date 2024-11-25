@@ -69,8 +69,8 @@ const data = {
             status: 'Active'
         }
     ]
-};
-
+};*/
+/*
 const getPostmanData = () => {
     fetch("https://portainer.kubelab.dk/api/system/status", {
         method: "GET"
@@ -100,7 +100,7 @@ const getPostmanData = () => {
 };
 
 getPostmanData();
-/*
+
 
 // Define a route to render a template
 app.get('/', (req, res) => {

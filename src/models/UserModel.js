@@ -4,7 +4,7 @@ const db = require('../config/db.js');
 //async betyder, at funktionen indeholder aynkron kode
 exports.getUsers = async () => {
     //await pauser udførelsen af en kode indtil promise er opfyldt
-    const [rows, fields] = await db.query('SELECT first_name, last_name, email, password id FROM Users');
+    const [rows, fields] = await db.query('SELECT first_name, last_name, email, password, user_id FROM Users');
     return rows;
 }
 

@@ -2,10 +2,6 @@ const UserModel = require('../models/UserModel');
 const jwt = require('jsonwebtoken');
 const key = 'key';
 
-let jwtUser;
-
-
-
 exports.getUsers = async (req, res) => {
     try {
         const users = await UserModel.getUsers();
