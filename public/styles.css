@@ -35,8 +35,8 @@ body.dark-mode {
     font-family: "Roboto", sans-serif;
 }
 
-a {
-    text-decoration: none;
+svg {
+    min-width: fit-content;
 }
 
 h1 {
@@ -100,9 +100,12 @@ input, select {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+
+
 body.dark-mode input, 
 body.dark-mode select {
     background-color: var(--input-bg-dark);
+    color: var(--input-bg-light);
 }
 
 input::placeholder {
@@ -237,7 +240,7 @@ body.dark-mode .nav-button:hover {
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    padding: 0 32px;
+    padding: 0 0 0 32px;
     width: 100%;
     gap: 20px;
 }
