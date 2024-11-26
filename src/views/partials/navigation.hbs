@@ -17,7 +17,7 @@
       </div>
       <div class="nav-list">
         <h4>Main</h4>
-        <a id="selected-btn" class="nav-button" href="/projects">
+        <a class="nav-button" href="/projects">
           <svg  class="icon" width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5.54276 4.04L4.43163 4.89898C2.74647 6.20176 1.90387 6.85315 1.45193 7.77161C1 8.69007 1 9.75107 1 11.8731V14.1744C1 18.3393 1 20.4218 2.30174 21.7158C3.34962 22.7572 4.91159 22.9604 7.66667 23V18.6063C7.66667 17.5812 7.66667 17.0686 7.83582 16.6643C8.06137 16.1252 8.49398 15.697 9.03844 15.4737C9.44689 15.3063 9.96456 15.3063 11 15.3063C12.0354 15.3063 12.5531 15.3063 12.9616 15.4737C13.506 15.697 13.9387 16.1252 14.1642 16.6643C14.3333 17.0686 14.3333 17.5812 14.3333 18.6063V23C17.0884 22.9604 18.6503 22.7572 19.6982 21.7158C21 20.4218 21 18.3393 21 14.1744V11.8731C21 9.75107 21 8.69007 20.5481 7.77161C20.0961 6.85315 19.2536 6.20176 17.5683 4.89898L16.4572 4.04C13.8357 2.01333 12.5249 1 11 1C9.47511 1 8.1643 2.01333 5.54276 4.04Z" stroke="#2F2F2F" stroke-width="2" stroke-linejoin="round"/>
           </svg>
@@ -86,8 +86,8 @@
   
     </nav>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
+<script>
+ document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.getElementById("theme-toggle");
     const body = document.body;
 
@@ -105,6 +105,17 @@
         // Save theme preference
         localStorage.setItem("theme", isDarkMode ? "dark-mode" : "light-mode");
     });
+
+    // Highlight the active page in the navigation
+    const navLinks = document.querySelectorAll(".nav-button");
+    const currentPage = window.location.pathname;
+
+    navLinks.forEach(link => {
+        // Add the 'selected-btn' ID to the link that matches the current page URL
+        if (link.getAttribute('href') === currentPage) {
+            link.id = 'selected-btn'; // Add the ID dynamically
+        }
+    });
 });
 
-    </script>
+</script>

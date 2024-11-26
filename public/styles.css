@@ -35,6 +35,10 @@ body.dark-mode {
     font-family: "Roboto", sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
+
 h1 {
     font-size: 36px;
     color: var(--text-light);
@@ -78,7 +82,12 @@ form {
     gap: 20px
 }
 
-
+.login-wrap {
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    width: 100%;
+}
 
 input, select {
     height: 53px;
@@ -201,8 +210,22 @@ body.dark-mode .nav-user {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+#selected-btn {
+    background-color: #B8BFFF;
+}
+
+#selected-btn h2 {
+    color: #160F29;
+}
+
+#selected-btn path {
+    stroke: #160F29;
+}
+
 .nav-button:hover {
     background-color: var(--hover-light);
+    text-decoration: none;
+
 }
 
 body.dark-mode .nav-button:hover {
@@ -408,7 +431,7 @@ a:hover #restart-animation {
     display: flex;
     flex-direction: column;
     gap: 20px !important;
-    max-width: 450px;
+    max-width: 450px !important;
 }
 
 .section-secondary {

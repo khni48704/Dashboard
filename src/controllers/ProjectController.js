@@ -2,7 +2,7 @@ const ProjectModel = require('../models/ProjectModel');
 
 exports.getStack = async (req, res) => {
     try {
-        email= "jacob@ucl.dk";
+        email = "k.madsen999gmail.com";
         console.log(email);
         let stacks = await ProjectModel.getStack(email);
         res.render('projects', {stacks});
