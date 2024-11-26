@@ -14,7 +14,9 @@ const PORT = process.env.PORT || 3200;
 const exphbs = require('express-handlebars');
 const jwt = require('jsonwebtoken');
 const key = 'key';
+const portainerRoutes = require('./src/routes/portainerServices');
 
+app.use('/', portainerRoutes);
 app.engine('hbs', exphbs.engine({
     extname: '.hbs',
     defaultLayout: false

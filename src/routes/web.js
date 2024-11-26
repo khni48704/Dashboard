@@ -52,6 +52,8 @@ router.get('/user', (req, res) => {
 
 router.get('/navigation', (req, res) => {
     res.render('navigation')
+
+router.post('/add-project', stackController.createStack)
 });
 
 module.exports = router;
