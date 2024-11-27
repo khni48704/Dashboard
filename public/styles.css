@@ -275,6 +275,12 @@ body.dark-mode .nav-button:hover {
     padding: 0 10px;
 }
 
+.projects-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .projects {
     background-color: var(--input-bg-light);
     border-radius: 10px;
@@ -465,5 +471,6 @@ a:hover #restart-animation {
 
 @media screen and (max-width: 1175px) {
     
+
     
 }
