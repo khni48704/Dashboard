@@ -20,11 +20,21 @@ router.get('/createAccount', (req, res) => {
 });
 
 router.get('/projects', (req, res) => {
-    res.render('projects')
+    const emailSent = req.query.email;
+    console.log(emailSent);
+    if (!emailSent) {
+        return res.status(400).send('E-mail parameter mangler.');
+    }
+    res.render('projects', { emailSent })
 });
 
 router.get('/createStack', (req, res) => {
-    res.render('createStack')
+    /*const emailSent = req.query.email;
+    console.log(emailSent);
+    if (!emailSent) {
+        return res.status(400).send('E-mail parameter mangler.');
+    }*/
+    res.render('createStack'/*, { emailSent }*/)
 });
 
 router.get('/createTemplate', (req, res) => {
@@ -43,12 +53,16 @@ router.get('/createGroup', (req, res) => {
     res.render('createGroup')
 })
 
-router.get('/user', (req, res) => {
-    res.render('user')
+router.get('/settings', (req, res) => {
+    res.render('settings')
 })
 
 router.get('/navigation', (req, res) => {
     res.render('navigation')
+});
+
+router.get('/changePassword', (req, res) => {
+    res.render('changePassword')
 });
 
 module.exports = router;
