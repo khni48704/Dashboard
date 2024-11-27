@@ -36,6 +36,8 @@
   </body>
 </html>
 <script>
+
+  //Henter fra localstorage
 var emailSent;
    function fetchEmailFromLocalStorage(key) {
         emailSent = localStorage.getItem(key);
@@ -47,6 +49,7 @@ var emailSent;
             return null;
         }
    }
+   //gemmer i local storage
    const loginForm = document.getElementById('form_login');
         loginForm.addEventListener('submit', async (error) => {
             error.preventDefault();
@@ -65,9 +68,12 @@ var emailSent;
                     const data = await response.json();
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('email', email); 
-                    //console.log(email);                   
+                    //console.log(email);       
+
+                    //her sender den til localstorage            
                     console.log('Login succesfuldt!');
                     const emailSent = fetchEmailFromLocalStorage('email');
+                    //sætter query parameter på
                     window.location.href = `/projects?email=${encodeURIComponent(emailSent)}`;
                 } else {
                     console.log('Forkert e-mail eller adgangskode.');
