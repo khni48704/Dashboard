@@ -29,12 +29,12 @@ router.get('/projects', (req, res) => {
 });
 
 router.get('/createStack', (req, res) => {
-    const emailSent = req.query.email;
+    /*const emailSent = req.query.email;
     console.log(emailSent);
     if (!emailSent) {
         return res.status(400).send('E-mail parameter mangler.');
-    }
-    res.render('createStack', { emailSent })
+    }*/
+    res.render('createStack'/*, { emailSent }*/)
 });
 
 router.get('/createTemplate', (req, res) => {
