@@ -3,6 +3,7 @@ const axios = require('axios');
 
 exports.getStack = async (req, res) => {
   try {
+    //finder emailen gennem query parameteret
       const emailSent = req.query.email;
       if (!emailSent) {
           return res.status(400).send('E-mail ikke fundet');

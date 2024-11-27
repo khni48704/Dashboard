@@ -19,6 +19,7 @@ router.get('/createAccount', (req, res) => {
     res.render('createAccount')
 });
 
+//kan ikke hente fra query parameteret
 router.get('/projects', (req, res) => {
     const emailSent = req.query.email;
     console.log(emailSent);
