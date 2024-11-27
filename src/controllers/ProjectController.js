@@ -2,9 +2,11 @@ const ProjectModel = require('../models/ProjectModel');
 
 exports.getStack = async (req, res) => {
     try {
-        email = "k.madsen999gmail.com";
-        console.log(email);
-        let stacks = await ProjectModel.getStack(email);
+      const emailSent = req.query.email;
+      if (!emailSent) {
+          return res.status(400).send('E-mail ikke fundet')
+        }
+        let stacks = await ProjectModel.getStack(emailSent);
         res.render('projects', {stacks});
     } catch(error) {
         console.log("fejlmdam");
