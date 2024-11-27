@@ -2,12 +2,10 @@
 //  project/
 //  - views/
 //      - home.hbs
-
-
 const express = require('express');
 const path = require('node:path');
 const app = express();
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); //muligvis slettes
 const webRoutes = require('./src/routes/web');
 const URL = process.env.URL || '0.0.0.0';
 const PORT = process.env.PORT || 3200;
@@ -56,6 +54,7 @@ const authenticateToken = (req, res, next) => {
 app.get('/protected', authenticateToken, (req, res) => {
     res.json({ message: 'Velkommen til den beskyttede rute!', user: req.user });
 });
+
 
 /*
 const data = {
