@@ -150,6 +150,12 @@ function toggleMenu() {
     const navlistMobile = document.querySelector('.navlist-mobile-wrap');
     const navUser = document.querySelector('.nav-user');
     
+    // Initialize the display state if it hasn't been set
+    if (open.style.display === '' && closed.style.display === '') {
+        open.style.display = 'flex'; // Set 'open' icon visible by default
+        closed.style.display = 'none'; // Set 'closed' icon hidden by default
+    }
+
     // Toggle display of open and closed icons
     if (open.style.display === 'flex') {
         open.style.display = 'none';
@@ -183,6 +189,7 @@ function toggleMenu() {
         navUser.classList.add('expanded');  // Add 'expanded' class to open
     }
 }
+
 
 
 
