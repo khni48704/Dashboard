@@ -1,7 +1,6 @@
 const express = require('express');
 const userController = require('../controllers/UserController');
 const projectController = require('../controllers/ProjectController');
-
 const router = express.Router();
 
 router.get('/users', userController.getUsers);
@@ -11,8 +10,6 @@ router.post('/login', userController.loginUser); //ny linje slet hvis ikke virke
 router.get('/stacks', projectController.getStack);
 router.post('/add-project', projectController.createStack); 
 router.get('/projects', projectController.getStack);
-
-
 
 router.get('/', (req, res) => {
     res.render('index.hbs');
