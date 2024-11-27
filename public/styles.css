@@ -608,12 +608,9 @@ a:hover #restart-animation {
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
+    
+}
 
-
-
-
-
-
-  
+@media screen and (max-width: 890px) { 
     
 }
