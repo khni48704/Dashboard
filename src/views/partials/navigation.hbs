@@ -1,6 +1,9 @@
 <nav>
       <div class="nav-padding">
-      <div>
+      <div class="burger-menu-wrap">
+        <h1>Dashboard</h1>
+
+      
       <div class="nav-user">
         <svg class="icon" width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M39 20.5C39 30.7172 30.7172 39 20.5 39C10.2827 39 2 30.7172 2 20.5C2 10.2827 10.2827 2 20.5 2C30.7172 2 39 10.2827 39 20.5Z" stroke="#160F29" stroke-width="2.5"/>
@@ -13,9 +16,22 @@
         <h4>{{email}}</h4>
           {{/each}}
       </div>
+      <div>
+      <svg class="icon" id="open" onclick="toggleMenu()" width="30" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.66675 2.33331H28.3334" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M1.66675 14H28.3334" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M1.66675 25.6667H28.3334" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      
+      <svg class="icon" id="closed" onclick="toggleMenu()" width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M28.0001 2.33331L1.66675 28.6667M1.66675 2.33331L28.0001 28.6667" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      
+      </div>
+
 
       </div>
-      <div class="nav-list">
+      <div class="nav-list" id="navlist-mobile-hide">
         <h4>Main</h4>
         <a class="nav-button" href="/projects">
           <svg  class="icon" width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,6 +70,45 @@
         </div>
         </div>
 
+        <div class="navlist-mobile-wrap">
+        <div class="nav-list" id="navlist-desktop-hide">
+        <h4>Main</h4>
+        <a class="nav-button" href="/projects">
+          <svg  class="icon" width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.54276 4.04L4.43163 4.89898C2.74647 6.20176 1.90387 6.85315 1.45193 7.77161C1 8.69007 1 9.75107 1 11.8731V14.1744C1 18.3393 1 20.4218 2.30174 21.7158C3.34962 22.7572 4.91159 22.9604 7.66667 23V18.6063C7.66667 17.5812 7.66667 17.0686 7.83582 16.6643C8.06137 16.1252 8.49398 15.697 9.03844 15.4737C9.44689 15.3063 9.96456 15.3063 11 15.3063C12.0354 15.3063 12.5531 15.3063 12.9616 15.4737C13.506 15.697 13.9387 16.1252 14.1642 16.6643C14.3333 17.0686 14.3333 17.5812 14.3333 18.6063V23C17.0884 22.9604 18.6503 22.7572 19.6982 21.7158C21 20.4218 21 18.3393 21 14.1744V11.8731C21 9.75107 21 8.69007 20.5481 7.77161C20.0961 6.85315 19.2536 6.20176 17.5683 4.89898L16.4572 4.04C13.8357 2.01333 12.5249 1 11 1C9.47511 1 8.1643 2.01333 5.54276 4.04Z" stroke="#2F2F2F" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          <h2>Projects</h2>
+        </a>
+
+        <a class="nav-button" href="/createStack">
+          <svg class="icon" width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.26998 2.64559L5.37573 3.43362C2.45858 4.64719 1 5.25397 1 6.25C1 7.24603 2.45858 7.85281 5.37574 9.06638L7.26998 9.85439C9.10578 10.6181 10.0238 11 11 11C11.9762 11 12.8942 10.6181 14.73 9.85439L16.6242 9.06638C19.5414 7.85281 21 7.24603 21 6.25C21 5.25397 19.5414 4.64719 16.6242 3.43362L14.73 2.64559C12.8942 1.88186 11.9762 1.5 11 1.5C10.0238 1.5 9.10578 1.88186 7.26998 2.64559Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20.7644 10.5973C20.9214 10.796 21 11.0032 21 11.231C21 12.2128 19.5414 12.811 16.6242 14.0073L14.73 14.7841C12.8942 15.5369 11.9762 15.9134 11 15.9134C10.0238 15.9134 9.10578 15.5369 7.26998 14.7841L5.37574 14.0073C2.45858 12.811 1 12.2128 1 11.231C1 11.0032 1.07852 10.796 1.23556 10.5973" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20.3074 15.7661C20.7691 16.0971 21 16.427 21 16.8176C21 17.7995 19.5414 18.3976 16.6242 19.5939L14.73 20.3707C12.8942 21.1236 11.9762 21.5 11 21.5C10.0238 21.5 9.10578 21.1236 7.26998 20.3707L5.37574 19.5939C2.45858 18.3976 1 17.7995 1 16.8176C1 16.427 1.23087 16.0971 1.6926 15.7661" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2>Create Projects</h2>
+        </a>
+
+        <a class="nav-button" href="/templates">
+          <svg class="icon" width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 1.5V21.5M21 11.5H1" stroke="#160F29" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2>Templates</h2>
+        </a>
+
+        <a class="nav-button" href="/groups">
+          <svg class="icon" width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.26318 17.3947C6.26318 16.3782 6.60901 15.35 7.45363 14.7846C8.46656 14.1063 9.68676 13.7104 11 13.7104C12.3133 13.7104 13.5335 14.1063 14.5464 14.7846C15.3911 15.35 15.7369 16.3782 15.7369 17.3947" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11 11.079C12.4534 11.079 13.6316 9.90076 13.6316 8.44737C13.6316 6.99399 12.4534 5.8158 11 5.8158C9.54661 5.8158 8.36841 6.99399 8.36841 8.44737C8.36841 9.90076 9.54661 11.079 11 11.079Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16.7896 8.44739C17.9581 8.44739 19.0438 8.84412 19.9447 9.5236C20.7084 10.0996 21.0001 11.0738 21.0001 12.0303V12.1316" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16.7896 5.81575C17.9523 5.81575 18.8949 4.87319 18.8949 3.71049C18.8949 2.54778 17.9523 1.60522 16.7896 1.60522C15.6269 1.60522 14.6843 2.54778 14.6843 3.71049C14.6843 4.87319 15.6269 5.81575 16.7896 5.81575Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.21053 8.44739C4.04197 8.44739 2.95627 8.84412 2.05533 9.5236C1.29164 10.0996 1 11.0738 1 12.0303V12.1316" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.21049 5.81575C6.37319 5.81575 7.31575 4.87319 7.31575 3.71049C7.31575 2.54778 6.37319 1.60522 5.21049 1.60522C4.04778 1.60522 3.10522 2.54778 3.10522 3.71049C3.10522 4.87319 4.04778 5.81575 5.21049 5.81575Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2>Groups</h2>
+        </a>
+        </div>
+
         <div class="nav-list" href="/user">
         <h4>Other</h4>
         <a class="nav-button">
@@ -83,10 +138,61 @@
           <h2>Logout</h2>
         </a>
         </div>
+        </div>
   
     </nav>
 
 <script>
+
+function toggleMenu() {
+    const open = document.getElementById('open');
+    const closed = document.getElementById('closed');
+    const navlistMobile = document.querySelector('.navlist-mobile-wrap');
+    const navUser = document.querySelector('.nav-user');
+    
+    // Toggle display of open and closed icons
+    if (open.style.display === 'flex') {
+        open.style.display = 'none';
+        closed.style.display = 'flex';
+    } else {
+        open.style.display = 'flex';
+        closed.style.display = 'none';
+    }
+
+    // Toggle the sliding effect of the mobile nav list
+    if (navlistMobile.classList.contains('open')) {
+        // Slide up animation, then hide it
+        navlistMobile.classList.remove('open');
+        
+        // Wait for the transition to finish before setting display to none
+        navlistMobile.addEventListener('transitionend', function() {
+            navlistMobile.style.display = 'none';
+        }, { once: true });
+    } else {
+        // Slide down and show it
+        navlistMobile.style.display = 'flex';  // Set display before adding class for transition
+        setTimeout(() => {
+            navlistMobile.classList.add('open');
+        }, 10);  // Wait for the display to be applied before starting the animation
+    }
+
+    // Toggle styles of .nav-user with animation
+    if (navUser.classList.contains('expanded')) {
+        navUser.classList.remove('expanded');  // Remove 'expanded' class to collapse
+    } else {
+        navUser.classList.add('expanded');  // Add 'expanded' class to open
+    }
+}
+
+
+
+
+
+
+
+
+
+
  document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.getElementById("theme-toggle");
     const body = document.body;
@@ -104,7 +210,12 @@
 
         // Save theme preference
         localStorage.setItem("theme", isDarkMode ? "dark-mode" : "light-mode");
+
+        // Add a slight animation effect
+        themeToggle.classList.add("clicked");
+        setTimeout(() => themeToggle.classList.remove("clicked"), 300);
     });
+
 
     // Highlight the active page in the navigation
     const navLinks = document.querySelectorAll(".nav-button");
