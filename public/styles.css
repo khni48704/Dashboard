@@ -462,3 +462,8 @@ a:hover #restart-animation {
     height: 20px;
     background-color: #B8BFFF;
   }
+
+@media screen and (max-width: 1175px) {
+    
+    
+}
