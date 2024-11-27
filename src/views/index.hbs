@@ -36,51 +36,27 @@
   </body>
 </html>
 <script>
+const loginForm = document.getElementById('form_login');
+loginForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-  //Henter fra localstorage
-var emailSent;
-   function fetchEmailFromLocalStorage(key) {
-        emailSent = localStorage.getItem(key);
-        if (emailSent) {
-            console.log(`${key} hentet fra localstorage`, emailSent);
-            return emailSent;
-        } else {
-            console.log('Ingen e-mail fundet i localStorage.');
-            return null;
-        }
-   }
-   //gemmer i local storage
-   const loginForm = document.getElementById('form_login');
-        loginForm.addEventListener('submit', async (error) => {
-            error.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            try {
-                const response = await fetch('/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('email', email); 
-                    //console.log(email);       
-
-                    //her sender den til localstorage            
-                    console.log('Login succesfuldt!');
-                    const emailSent = fetchEmailFromLocalStorage('email');
-                    //sætter query parameter på
-                    window.location.href = `/projects?email=${encodeURIComponent(emailSent)}`;
-                } else {
-                    console.log('Forkert e-mail eller adgangskode.');
-                }
-            } catch (error) {
-                console.error('Fejl:', error);
-                console.log('Noget gik galt. Prøv igen senere.');
-            }
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
         });
+
+        if (response.redirected) {
+            window.location.href = response.url;
+        } else {
+            console.log('Forkert e-mail eller adgangskode.');
+        }
+    } catch (error) {
+        console.error('Fejl:', error);
+    }
+});
 </script>

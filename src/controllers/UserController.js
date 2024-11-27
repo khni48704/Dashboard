@@ -1,3 +1,4 @@
+const e = require('express');
 const UserModel = require('../models/UserModel');
 const jwt = require('jsonwebtoken');
 const key = 'key';
@@ -21,31 +22,31 @@ exports.createUser = async (req, res) => {
     }
 };
 
-//Login og konsolog ok, hvis bruger eksitere i db
 exports.loginUser = async (req, res) => {
-  try {
-      let email = req.body.email;
-      let password = req.body.password;
-      console.log('Logget ind via:', { email, password });
-
+    try {
+      const { email, password } = req.body;
+      console.log('logget ind via', { email, password });
+  
       const user = await UserModel.findUserByEmailAndPassword(email, password);
       if (user) {
+        // Generer et JWT-token
         const token = jwt.sign(
-            {id: user.id, email: user.email},
-            key,
-            {expiresIn: '5m'}
+          { id: user.user_id, email: user.email },
+          key,
+          { expiresIn: '1h' }
         );
-        console.log(token);
-        return res.json({ token });
-          //res.redirect('/projects');
+  
+        // Gem token i sessionen
+        req.session.user = { id: user.user_id, email: user.email, token: token };
+        console.log('Session oprettet', req.session.user);
+  
+        return res.redirect('/projects');
       } else {
-          //res.status(401).json({ message: "Invalid email or password" });
-          res.render('index', { error: "Invalid email or password" });
+        res.status(401).render('index', { error: "Ugyldig email eller password" });
       }
-  } catch (error) {
+    } catch (error) {
       console.error(error);
-      //res.status(500).send('Server Error');
-      res.status(500).render('index', { error: 'Server Error. Prøv igen senere.' });
-  }
-};
+      res.status(500).render('index', { error: 'Server error' });
+    }
+  };
 

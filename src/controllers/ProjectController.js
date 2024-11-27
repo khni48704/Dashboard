@@ -3,6 +3,21 @@ const axios = require('axios');
 
 exports.getStack = async (req, res) => {
   try {
+      // Tjek om bruger er logget ind
+      if (!req.session.user) {
+          return res.redirect('/');
+      }
+
+      const emailSent = req.session.user.email;
+      const stacks = await ProjectModel.getStack(emailSent);
+      res.render('projects', { stacks });
+  } catch (error) {
+      console.error("Fejl:", error);
+      res.status(500).send('Server Error');
+  }
+};
+/* exports.getStack = async (req, res) => {
+  try {
     //finder emailen gennem query parameteret
       const emailSent = req.query.email;
       if (!emailSent) {
@@ -15,7 +30,7 @@ exports.getStack = async (req, res) => {
       res.status(500).send('Server Error' + error);
   }
 };
-
+*/
 // Opret stack og opret stack i Portainer
 exports.createStack = async (req, res) => {
   try {

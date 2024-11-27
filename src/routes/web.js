@@ -2,6 +2,43 @@ const express = require('express');
 const userController = require('../controllers/UserController');
 const projectController = require('../controllers/ProjectController');
 const router = express.Router();
+const session = require('express-session');
+const authMiddleware = require('../middlewares/authMiddleware');
+
+// Opsæt session middleware
+router.use(session({
+    secret: 'mySecretKey', // Brug en sikker nøgle
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Sæt til true, hvis HTTPS bruges
+}));
+
+// Middleware til at logge sessions
+router.use((req, res, next) => {
+    console.log('Session:', req.session);
+    next();
+});
+
+const requireAuth = (req, res, next) => {
+    if (!req.session.user) {
+        return res.redirect('/');
+    }
+    next();
+};
+
+// Anvend på nødvendige ruter
+router.get('/projects', requireAuth, projectController.getStack);
+router.get('/createStack', requireAuth, (req, res) => res.render('createStack'));
+
+router.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Error destroying session:', err);
+        }
+        res.redirect('/');
+    });
+});
+
 
 router.get('/users', userController.getUsers);
 router.post('/add-user', userController.createUser);
