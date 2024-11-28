@@ -14,7 +14,7 @@ router.use(session({
 
 // Middleware til at logge sessions
 router.use((req, res, next) => {
-    console.log('Session:', req.session);
+    //console.log('Session:', req.session);
     next();
 });
 
