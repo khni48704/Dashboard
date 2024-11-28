@@ -7,10 +7,9 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 // Opsæt session middleware
 router.use(session({
-    secret: 'mySecretKey', // Brug en sikker nøgle
+    secret: 'mySecretKey', 
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false } // Sæt til true, hvis HTTPS bruges
 }));
 
 // Middleware til at logge sessions

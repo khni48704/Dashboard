@@ -20,13 +20,12 @@ exports.createUser = async (user) => {
   };
 
 /* Nye kode finder bruger på email og password*/
-
 exports.findUserByEmailAndPassword = async (email, password) => {
   const [rows] = await db.query('SELECT * FROM Users WHERE email = ? AND password = ?', [email, password]);
-  console.log('Database response:', rows); // Log, hvad der returneres fra databasen
+  console.log('Database response:', rows);
   if (rows.length > 0) {
-      return rows[0]; // Returner første bruger, hvis en findes
+      return rows[0];
   }
-  return null; // Returner null, hvis ingen bruger blev fundet
+  return null;
 };
 
