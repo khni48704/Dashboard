@@ -5,16 +5,16 @@ const router = express.Router();
 const session = require('express-session');
 const authMiddleware = require('../middlewares/authMiddleware');
 
-// Opsæt session middleware
+// Opsætter vores session middleware
 router.use(session({
     secret: 'mySecretKey', 
     resave: false,
     saveUninitialized: false,
+    cookie: { secure: false }
 }));
 
-// Middleware til at logge sessions
+// Middleware til at logge vores brugeres sessions
 router.use((req, res, next) => {
-    //console.log('Session:', req.session);
     next();
 });
 
@@ -25,20 +25,21 @@ const requireAuth = (req, res, next) => {
     next();
 };
 
-// Anvend på nødvendige ruter
 router.get('/projects', requireAuth, projectController.getStack);
 router.get('/createStack', requireAuth, (req, res) => res.render('createStack'));
 
 router.post('/logout', (req, res) => {
-    req.session.destroy(err => {
+    console.log('Forsøg på at logge ud:', req.session.user ? req.session.user.email : 'Ingen session');
+    req.session.destroy((err) => {
         if (err) {
-            console.error('Error destroying session:', err);
-            return res.status(500).send('Error logging out');
+            console.error('Fejl ved destruktion af session:', err);
+            return res.status(500).send('Fejl ved logout');
         }
-        // Redirect efter logout
+        console.log('Session destrueret');
         res.redirect('/');
     });
 });
+
 
 
 router.get('/users', userController.getUsers);
