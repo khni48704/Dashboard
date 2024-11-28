@@ -11,23 +11,31 @@
 </head>
 <body class="body-flex">
   {{> navigation}}
-    <section class="section-secondary">
-        <div class="default-div">
-          <h1>Create project</h1>
-          <form method="POST" action="/add-project">
-          <input type="text" name="project_name" placeholder="Project name" required/>
-          <input type="text" name="url" placeholder="Subdomain" required/>
-          <select>
-            <option value="template">Template</option>
-            <option value="wordpress">Wordpress</option>
-          </select>
-          <button onclick="move()"> Create project</button>
-          </form>
-          <div class="myProgress">
-            <div id="create_animation"></div>
-            </div>
-          </div>
-    </section>
+   <section class="section-secondary">
+  <div class="default-div">
+    <h1>Create project</h1>
+    <form method="POST" action="/add-project">
+      <input type="text" name="project_name" placeholder="Project name" required />
+      <input type="text" name="url" placeholder="Subdomain" required />
+      
+  
+      <select name="template" required>
+        <option value="template">Template</option>
+        <option value="wordpress">Wordpress</option>
+      </select>
+      
+ <!-- Disse to linjer er skjulte, da jeg gerne vil sende den data med over i poratiner, hvis vi skal bruge det senere til at hente, kan fjernes hvis ikke de skal med og ikke bruges-->
+      <input type="hidden" name="groupId" value="{{user.groupId}}" />
+      <input type="hidden" name="projectId" value="{{projectId}}" /> 
+      
+      <button type="submit">Create project</button>
+    </form>
+    
+    <div class="myProgress">
+      <div id="create_animation"></div>
+    </div>
+  </div>
+</section>
 </body>
 </html>
 

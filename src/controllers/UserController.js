@@ -23,38 +23,29 @@ exports.createUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-    try {
+  try {
       const { email, password } = req.body;
-      console.log('logget ind via', { email, password });
-  
+      console.log('Login forsøg:', { email, password });
+
       const user = await UserModel.findUserByEmailAndPassword(email, password);
       if (user) {
-        // Generer et JWT-token
-        const token = jwt.sign(
-          { id: user.user_id, email: user.email },
-          key,
-          { expiresIn: '1h' }
-        );
-  
-        // Gem token i sessionen
-        req.session.user = { id: user.user_id, email: user.email, token: token };
-        console.log('Session oprettet', req.session.user);
-  
-        return res.redirect('/projects');
+          // Generer JWT-token
+          const token = jwt.sign(
+              { id: user.user_id, email: user.email },
+              key, 
+              { expiresIn: '1h' }
+          );
+
+          // Gem brugerens id, email og token i sessionen
+          req.session.user = { user_id: user.user_id, email: user.email, token: token };
+          console.log('Session oprettet:', req.session.user);  // Log sessionen her
+
+          return res.redirect('/projects');
       } else {
-        res.status(401).render('index', { error: "Ugyldig email eller password" });
+          res.status(401).render('index', { error: "Ugyldig email eller password" });
       }
-    } catch (error) {
+  } catch (error) {
       console.error(error);
       res.status(500).render('index', { error: 'Server error' });
-    }
-  };
-
-  exports.logoutUser = (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            return res.status(500).send('Failed to log out');
-        }
-        res.status(200).send('Logged out successfully');
-    });
+  }
 };
