@@ -29,11 +29,13 @@ const requireAuth = (req, res, next) => {
 router.get('/projects', requireAuth, projectController.getStack);
 router.get('/createStack', requireAuth, (req, res) => res.render('createStack'));
 
-router.get('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
             console.error('Error destroying session:', err);
+            return res.status(500).send('Error logging out');
         }
+        // Redirect efter logout
         res.redirect('/');
     });
 });

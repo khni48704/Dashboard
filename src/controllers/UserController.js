@@ -50,3 +50,12 @@ exports.loginUser = async (req, res) => {
     }
   };
 
+  exports.logoutUser = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).send('Failed to log out');
+        }
+        // Hvis sessionen blev afsluttet korrekt, returneres en succesbesked
+        res.status(200).send('Logged out successfully');
+    });
+};
