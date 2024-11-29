@@ -40,9 +40,8 @@ router.post('/logout', (req, res) => {
     });
 });
 
-
-
-router.get('/users', userController.getUsers);
+//router.get('/users', userController.getUsers);
+router.get('/projects', userController.getUsers);
 router.post('/add-user', userController.createUser);
 router.post('/login', userController.loginUser); //ny linje slet hvis ikke virker
 

@@ -453,7 +453,7 @@ body {
     background-color: #B8BFFF;
     cursor: pointer;
     align-items: center;
-    width: 260px;
+    width: 300px;
     gap: 10px;
     padding: 10px;
     transition: transform 0.3s ease, background-color 0.3s ease;

@@ -1,4 +1,4 @@
-const e = require('express');
+const express = require('express');
 const UserModel = require('../models/UserModel');
 const jwt = require('jsonwebtoken');
 const key = 'key';
@@ -6,7 +6,7 @@ const key = 'key';
 exports.getUsers = async (req, res) => {
     try {
         const users = await UserModel.getUsers();
-        res.render('index', { users });
+        res.render('projects', { users });
     } catch(error) {
         res.status(500).send('Server Error');
     }
