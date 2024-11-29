@@ -8,6 +8,7 @@
       href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="styles"
     />
+    <script src="/js/dark-lightmode.js"></script>
 </head>
 <body class="body-flex">
     {{> navigation}}
@@ -21,28 +22,26 @@
                 <input type="text" placeholder="First name">
                 <input type="text" placeholder="Last name">
                 <input type="email" placeholder="Email">
-                <button>Save name</button>
+                <button><a>Save name</a></button>
             </div>
 
             <div class="default-div">
                 <h2>Change password</h2>
                 <p>To keep up the safety of your account, please change your password once every three months.</p>
-                <a href="/changePassword"><button>Change password</button></a>                
+                <button><a href="/changePassword">Change password</a></button>                
                 <br>
                 <h2>Dark/light mode</h2>
-                <a class="nav-button">
+                <button id="theme-toggle" aria-label="Toggle Theme">
                     <svg class="icon" width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 13.7972C19.7372 14.5051 18.2948 14.9065 16.7633 14.9065C11.7885 14.9065 7.75571 10.672 7.75571 5.44852C7.75571 3.84037 8.13795 2.32596 8.81224 1C4.33437 2.10193 1 6.32199 1 11.3597C1 17.2362 5.53695 22 11.1336 22C15.9315 22 19.9505 18.499 21 13.7972Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <h2>Dark mode</h2>
-                    <button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
-                </a>
+                    <span class="icon-darklightmode">🌙</span>
+                </button>
                 <br>
                 <h2>Change font</h2>
-                <button>Change font</button>
+                <button><a>Change font</a></button>
             </div>
-            
-
         </div>
 
     </section>
@@ -50,32 +49,3 @@
     
 </body>
 </html>
-<script>
- document.addEventListener("DOMContentLoaded", () => {
-    const themeToggle = document.getElementById("theme-toggle");
-    const body = document.body;
-
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-        body.classList.add(savedTheme);
-        themeToggle.textContent = savedTheme === "dark-mode" ? "☀️" : "🌙";
-    }
-
-    themeToggle.addEventListener("click", () => {
-        const isDarkMode = body.classList.toggle("dark-mode");
-        themeToggle.textContent = isDarkMode ? "☀️" : "🌙";
-
-        localStorage.setItem("theme", isDarkMode ? "dark-mode" : "light-mode");
-    });
-
-    const navLinks = document.querySelectorAll(".nav-button");
-    const currentPage = window.location.pathname;
-
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-            link.id = 'selected-btn';
-        }
-    });
-});
-
-</script>

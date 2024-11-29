@@ -444,13 +444,18 @@ body {
 }
 
 #theme-toggle {
-    font-size: 1.5rem;
-    padding: 0.5rem 1rem;
-    width: 3.8rem;
+    display: flex;
+    font-size: 30px;
     border: none;
+    height: 45px;
     border-radius: 20px;
-    background-color: #f1f1f1;
     cursor: pointer;
+    background-color: #B8BFFF;
+    cursor: pointer;
+    align-items: center;
+    width: 260px;
+    gap: 10px;
+    padding: 10px;
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
@@ -460,6 +465,16 @@ body {
 }
 
 
+.icon-darklightmode {
+    background-color: #F1F1F1;
+    border-radius: 20px;
+    width: 100px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.icon-darklightmode:active {
+    background-color: #ccc;
+}
 
 a:hover #restart-animation {
     animation-name: spin;
