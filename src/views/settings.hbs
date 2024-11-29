@@ -8,7 +8,6 @@
       href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="styles"
     />
-    <script src="/js/dark-lightmode.js"></script>
 </head>
 <body class="body-flex">
     {{> navigation}}
@@ -48,4 +47,23 @@
 
     
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+        body.classList.add(savedTheme);
+        themeToggle.querySelector(".icon-darklightmode").textContent = savedTheme === "dark-mode" ? "☀️" : "🌙";
+    }
+
+    themeToggle.addEventListener("click", () => {
+        const isDarkMode = body.classList.toggle("dark-mode");
+        themeToggle.querySelector(".icon-darklightmode") = isDarkMode ? "☀️" : "🌙";
+
+        localStorage.setItem("theme", isDarkMode ? "dark-mode" : "light-mode");
+    });
+});
+</script>
 </html>

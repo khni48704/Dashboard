@@ -111,10 +111,10 @@ exports.createStack = async (req, res) => {
             res.redirect('/projects'); 
         } catch (error) {
             console.error("Fejl fra Portainer API:", error.response ? error.response.data : error.message);
-            res.status(500).send('Server Error: Kunne ikke oprette stack. ' + (error.response ? error.response.data.message : ''));
+            res.status(500).send('Server Error: Kunne ikke oprette stack.1 ' + (error.response ? error.response.data.message : ''));
         }
     } catch (error) {
         console.log("Fejl i createStack:", error);
-        res.status(500).send('Server Error: Kunne ikke oprette stack.');
+        res.status(500).send('Server Error: Kunne ikke oprette stack.2');
     }
 };
