@@ -6,12 +6,12 @@ const key = 'key';
 exports.getUsers = async (req, res) => {
     try {
         const users = await UserModel.getUsers();
-        res.render('projects', { users });
-    } catch(error) {
+        const user = req.session.user; // hent brugeren fra sessionen
+        res.render('projects', { users, user }); // send både users og user til HBS
+    } catch (error) {
         res.status(500).send('Server Error');
     }
 };
-
 exports.createUser = async (req, res) => {
     try {
         const {first_name, last_name, email, password} = req.body;
@@ -23,29 +23,38 @@ exports.createUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-  try {
-      const { email, password } = req.body;
-      console.log('Login forsøg:', { email, password });
+    const { email, password } = req.body;
+    console.log('Login forsøg:', { email, password });
 
-      const user = await UserModel.findUserByEmailAndPassword(email, password);
-      if (user) {
-          // Generer JWT-token
-          const token = jwt.sign(
-              { id: user.user_id, email: user.email },
-              key, 
-              { expiresIn: '1h' }
-          );
+    try {
+        // Find brugeren i databasen
+        const user = await UserModel.findUserByEmailAndPassword(email, password);
 
-          // Gem brugerens id, email og token i sessionen
-          req.session.user = { user_id: user.user_id, email: user.email, token: token };
-          console.log('Session oprettet:', req.session.user);  // Log sessionen her
+        if (user) {
+            // Generer JWT-token
+            const token = jwt.sign(
+                { id: user.user_id, email: user.email },
+                key, 
+                { expiresIn: '1h' }
+            );
 
-          return res.redirect('/projects');
-      } else {
-          res.status(401).render('index', { error: "Ugyldig email eller password" });
-      }
-  } catch (error) {
-      console.error(error);
-      res.status(500).render('index', { error: 'Server error' });
-  }
+            // Gem brugerens data samt token i sessionen
+            req.session.user = {
+                user_id: user.user_id,
+                email: user.email,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                token: token // Gem token i sessionen
+            };
+
+            console.log('Session oprettet:', req.session.user);  // Log sessionen her
+
+            return res.redirect('/projects');  // Omdirigér til en beskyttet rute
+        } else {
+            return res.status(401).render('index', { error: "Ugyldig email eller password" });
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).render('index', { error: 'Server error' });
+    }
 };
