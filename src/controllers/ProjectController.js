@@ -4,20 +4,29 @@ const axios = require('axios');
 
 // Hent stack-data
 exports.getStack = async (req, res) => {
-  try {
-      // Tjek om bruger er logget ind
-      if (!req.session.user) {
-          return res.redirect('/');
-      }
-
-      const emailSent = req.session.user.email;
-      const stacks = await ProjectModel.getStack(emailSent);
-      res.render('projects', { stacks });
-  } catch (error) {
-      console.error("Fejl:", error);
-      res.status(500).send('Server Error');
-  }
-};
+    try {
+        if (!req.session.user) {
+            return res.redirect('/');
+        }
+  
+        const emailSent = req.session.user.email;
+        const stacks = await ProjectModel.getStack(emailSent);
+  
+        res.render('projects', { 
+            stacks, 
+            navigation: { 
+                user: {
+                    first_name: req.session.user.first_name,
+                    last_name: req.session.user.last_name,
+                    email: req.session.user.email
+                } 
+            } 
+        });
+    } catch (error) {
+        console.error("Fejl:", error);
+        res.status(500).send('Server Error');
+    }
+  };
 
 // Hent auth token fra Portainer API
 async function getAuthToken() {

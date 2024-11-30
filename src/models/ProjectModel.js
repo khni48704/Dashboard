@@ -2,7 +2,21 @@ const db = require('../config/db.js');
 
 exports.getStack = async (email) => {
     const [rows] = await db.query(
-        'SELECT Project.project_name, Project.url, Project.create_date, Users.email FROM Project INNER JOIN Users ON Project.user_id = Users.user_id WHERE Users.email = ?',
+        `SELECT 
+            Project.project_name, 
+            Project.url, 
+            Project.create_date, 
+            Users.email, 
+            Users.first_name, 
+            Users.last_name 
+         FROM 
+            Project 
+         INNER JOIN 
+            Users 
+         ON 
+            Project.user_id = Users.user_id 
+         WHERE 
+            Users.email = ?`,
         [email]
     );
     return rows;

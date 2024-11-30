@@ -7,17 +7,25 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 // Opsætter vores session middleware
 router.use(session({
-    secret: 'mySecretKey', 
+    secret: 'mySecretKey',
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false }
 }));
 
-// Middleware til at logge vores brugeres sessions
+// Middleware der gør brugerdata tilgængelige i views
 router.use((req, res, next) => {
+
+    // Hvis brugeren er logget ind, gem brugerdata i res.locals
+    if (req.session && req.session.user) {
+        res.locals.user = req.session.user;
+    } else {
+        res.locals.user = null;
+    }
     next();
 });
 
+// Middleware til at tjekke om brugeren er logget ind
 const requireAuth = (req, res, next) => {
     if (!req.session.user) {
         return res.redirect('/');
@@ -40,14 +48,13 @@ router.post('/logout', (req, res) => {
     });
 });
 
-//router.get('/users', userController.getUsers);
+//ruter til brugere og projekter
 router.get('/projects', userController.getUsers);
 router.post('/add-user', userController.createUser);
-router.post('/login', userController.loginUser); //ny linje slet hvis ikke virker
+router.post('/login', userController.loginUser);
 
 router.get('/stacks', projectController.getStack);
-router.post('/add-project', projectController.createStack); 
-router.get('/projects', projectController.getStack);
+router.post('/add-project', projectController.createStack);
 
 router.get('/', (req, res) => {
     res.render('index.hbs');
