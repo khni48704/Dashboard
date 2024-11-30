@@ -2,33 +2,66 @@ const jwt = require('jsonwebtoken');
 const ProjectModel = require('../models/ProjectModel');
 const axios = require('axios');
 
-// Hent stack-data
+// Funktion til at hente containerens status fra Portainer API
+async function getContainerStatus(authToken, containerId) {
+    try {
+        // Fetch container data using the container ID
+        const containerResponse = await axios.get(`https://portainer.kubelab.dk/api/containers/${containerId}/json`, {
+            headers: {
+                "Authorization": `Bearer ${authToken}`
+            }
+        });
+        
+        return containerResponse.data.Status || 'Unknown';
+    } catch (error) {
+        console.error(`Error fetching container status for ID ${containerId}:`, error.message);
+        return 'Error';
+    }
+}
+
 exports.getStack = async (req, res) => {
     try {
         if (!req.session.user) {
             return res.redirect('/');
         }
-  
+
         const emailSent = req.session.user.email;
         const stacks = await ProjectModel.getStack(emailSent);
-  
-        res.render('projects', { 
-            stacks, 
-            navigation: { 
+
+        const authToken = await getAuthToken();
+        if (!authToken) {
+            console.log('Missing auth-token');
+            return res.status(500).send('Missing auth-token');
+        }
+
+        for (let stack of stacks) {
+            const containerName = stack.project_name;
+            if (!containerName) {
+                console.error(`Missing containerName for stack: ${stack.project_name}`);
+                continue;
+            }
+
+            const containerId = stack.container_id;
+            const containerStatus = await getContainerStatus(authToken, containerId);
+            stack.containerStatus = containerStatus;
+        }
+
+        res.render('projects', {
+            stacks,
+            navigation: {
                 user: {
                     first_name: req.session.user.first_name,
                     last_name: req.session.user.last_name,
                     email: req.session.user.email
-                } 
-            } 
+                }
+            }
         });
     } catch (error) {
-        console.error("Fejl:", error);
+        console.error("Error:", error);
         res.status(500).send('Server Error');
     }
-  };
+};
 
-// Hent auth token fra Portainer API
 async function getAuthToken() {
     try {
         const response = await axios.post('https://portainer.kubelab.dk/api/auth', {
@@ -127,3 +160,4 @@ exports.createStack = async (req, res) => {
         res.status(500).send('Server Error: Kunne ikke oprette stack.2');
     }
 };
+

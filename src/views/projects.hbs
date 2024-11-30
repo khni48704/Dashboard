@@ -40,6 +40,7 @@
         <div class="projects">
           <div class="projects-main-details" onclick="toggleDropdown(this)">
             <h2 class="tabel">{{this.project_name}}</h2>
+            <h2 class="tabel">{{this.containerStatus}}</h2>
             <h2 class="tabel">ksma4320</h2>
             <h2 class="tabel">WUOE24</h2>
               <div class="status-container">
@@ -48,7 +49,7 @@
                     <path class="icon-stroke" d="M10.3333 18.8333C14.9357 18.8333 18.6667 15.1023 18.6667 10.5C18.6667 5.89759 14.9357 2.16663 10.3333 2.16663C5.73096 2.16663 2 5.89759 2 10.5C2 15.1023 5.73096 18.8333 10.3333 18.8333Z" stroke="white" stroke-width="1.25"/>
                     <path class="icon-fill" d="M7.91663 9.81091V11.189C7.91663 12.4973 7.91663 13.1514 8.29643 13.4159C8.67621 13.6802 9.19563 13.3877 10.2345 12.8027L11.458 12.1135C12.7082 11.4095 13.3333 11.0575 13.3333 10.5C13.3333 9.94249 12.7082 9.59047 11.458 8.88642L10.2345 8.19731C9.19563 7.61224 8.67621 7.3197 8.29643 7.5841C7.91663 7.84849 7.91663 8.50263 7.91663 9.81091Z" fill="white"/>
                   </svg>
-                  <h2>Running</h2>
+                  <h2>{{this.containerStatus}}</h2>
                 </div>
               <svg class="icon" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path class="icon-stroke" d="M11 1.00004C11 1.00004 7.31758 6 6 6C4.68233 6 1 1 1 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
