@@ -24,8 +24,8 @@ exports.getStack = async (email) => {
 
 exports.createStack = async (stack) => {
     const [result] = await db.execute(
-        `INSERT INTO Project (project_name, url, user_id, project_id, template_id, create_date, group_id) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)`, 
+        `INSERT INTO Project (project_name, url, user_id, project_id, template_id, create_date, group_id, portainer_id) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, 
         [
             stack.project_name,           
             stack.url,                   
@@ -33,7 +33,8 @@ exports.createStack = async (stack) => {
             stack.projectId || null,
             stack.templateId || null, 
             new Date(),
-            stack.groupId || null
+            stack.groupId || null,
+            stack.portainer_id || null
         ]
     );
     return result;
