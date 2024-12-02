@@ -5,19 +5,31 @@ const axios = require('axios');
 // Funktion til at hente containerens status fra Portainer API
 async function getContainerStatus(authToken, containerId) {
     try {
-        // Fetch container data using the container ID
-        const containerResponse = await axios.get(`https://portainer.kubelab.dk/api/containers/${containerId}/json`, {
+        
+        const containerResponse = await axios.get(`https://portainer.kubelab.dk/api/stacks`, {
             headers: {
                 "Authorization": `Bearer ${authToken}`
             }
         });
-        
-        return containerResponse.data.Status || 'Unknown';
+
+        console.log("API Response:", containerResponse.data);
+
+        const stack = containerResponse.data.find(stack => stack.Id === containerId);
+        console.log(stack, containerId);
+
+        if (stack) {
+            console.log("Stack found:", stack);
+            return stack.Status;
+        } else {
+            console.warn(`No stack found with ID ${containerId}`);
+            return 'Unknown';
+        }
     } catch (error) {
-        console.error(`Error fetching container status for ID ${containerId}:`, error.message);
+        console.error(`Error fetching container status for ID ${containerId}:`, error.response?.data || error.message);
         return 'Error';
     }
 }
+
 
 exports.getStack = async (req, res) => {
     try {
@@ -43,7 +55,9 @@ exports.getStack = async (req, res) => {
 
             const containerId = stack.container_id;
             const containerStatus = await getContainerStatus(authToken, containerId);
+            console.log(containerId , "linje58")
             stack.containerStatus = containerStatus;
+
         }
 
         res.render('projects', {
