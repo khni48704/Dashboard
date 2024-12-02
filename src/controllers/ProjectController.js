@@ -4,6 +4,7 @@ const axios = require('axios');
 
 // Funktion til at hente containerens status fra Portainer API
 async function getContainerStatus(authToken, containerId) {
+    console.log("containerid:",containerId);
     try {
         const containerResponse = await axios.get(`https://portainer.kubelab.dk/api/stacks`, {
             headers: {
@@ -18,6 +19,9 @@ async function getContainerStatus(authToken, containerId) {
 
         if (stack) {
             console.log("Stack found:", stack);
+            if (stack.Status === 1) {
+                return 'Running';
+            }
             return stack.Status;
         } else {
             console.warn(`No stack found with ID ${containerId}`);
@@ -32,11 +36,21 @@ async function getContainerStatus(authToken, containerId) {
 exports.getStack = async (req, res) => {
     try {
         if (!req.session.user) {
+            console.log("user not logged");
             return res.redirect('/');
         }
 
         const emailSent = req.session.user.email;
+        console.log("User email:", emailSent);
         const stacks = await ProjectModel.getStack(emailSent);
+        console.log("Stacks:", stacks);
+
+        if (!stacks || stacks.lenght === 0) {
+            console.log("Ingen stacks fundet for bruger:", emailSent);
+            return res.status(404).send("Ingen stacks fundet.");
+        }
+
+        console.log("Hentede stacks fra databasen:", stacks);
 
         const authToken = await getAuthToken();
         if (!authToken) {
@@ -46,10 +60,20 @@ exports.getStack = async (req, res) => {
 
         for (let stack of stacks) {
             const containerId = stack.portainer_id;
+            console.log(containerId , "linje52")
             const containerStatus = await getContainerStatus(authToken, containerId);
             console.log(containerId , "linje58")
             stack.containerStatus = containerStatus;
             console.log(stacks.Id);
+
+            if (!containerId) {
+                console.log(`Stack with ID ${stack.project_name} has no Portainer ID.`);
+                stack.containerStatus = 'Unknown';
+            } else {
+                const containerStatus = await getContainerStatus(authToken, containerId);
+                console.log("Container Status for", containerId, "linje58");
+                stack.containerStatus = containerStatus;
+            }
         }
 
         res.render('projects', {
@@ -96,15 +120,19 @@ exports.createStack = async (req, res) => {
             return res.status(400).send('Bruger ikke logget ind');
         }
 
-        const stacks = await ProjectModel.createStack({
-            project_name, 
-            url, 
-            userId,
-            template_id,
-            group_id,
-            create_date: new Date()
-        });
+        const token = req.session.user.token;
+        if (!token) {
+            console.log('Manglende JWT-token');
+            return res.status(401).send('Manglende JWT-token');
+        }
 
+        const authToken = await getAuthToken(); // Hent auth token fra Portainer
+        if (!authToken) {
+            console.log('Mangler auth-token fra Portainer API');
+            return res.status(500).send('Mangler auth-token fra Portainer API');
+        }
+
+        // Opret stacken på Portainer
         const stackData = {
             fromTemplate: false,
             name: project_name,
@@ -133,37 +161,32 @@ exports.createStack = async (req, res) => {
             swarmId: "v1pkdou24tzjtncewxhvpmjms"
         };
 
-        const token = req.session.user.token;
-        if (!token) {
-            console.log('Manglende JWT-token');
-            return res.status(401).send('Manglende JWT-token');
-        }
-
-        const authToken = await getAuthToken(); // Hent auth token fra Portainer, ligesom i postman.
-        if (!authToken) {
-            console.log('Mangler auth-token fra Portainer API');
-            return res.status(500).send('Mangler auth-token fra Portainer API');
-        }
-
         const portainerUrl = "https://portainer.kubelab.dk/api/stacks/create/swarm/string";
-        try {
-            const response = await axios.post(portainerUrl, stackData, {
-                params: { endpointId: 5 },
-                headers: {
-                    "Authorization": `Bearer ${authToken}`,
-                    "Content-Type": "application/json"
-                }
-            });
+        const response = await axios.post(portainerUrl, stackData, {
+            params: { endpointId: 5 },
+            headers: {
+                "Authorization": `Bearer ${authToken}`,
+                "Content-Type": "application/json"
+            }
+        });
 
-            console.log("Portainer API-svar:", response.data);
-            res.redirect('/projects'); 
-        } catch (error) {
-            console.error("Fejl fra Portainer API:", error.response ? error.response.data : error.message);
-            res.status(500).send('Server Error: Kunne ikke oprette stack.1 ' + (error.response ? error.response.data.message : ''));
-        }
+        console.log("Portainer API-svar:", response.data);
+
+        // Gem stack i din database og brug portainer_id
+        const portainer_id = response.data.Id; // Dette er Portainer ID'et for den nye stack
+        const stacks = await ProjectModel.createStack({
+            project_name,
+            url,
+            userId,
+            template_id,
+            group_id,
+            create_date: new Date(),
+            portainer_id
+        });
+
+        res.redirect('/projects'); 
     } catch (error) {
         console.log("Fejl i createStack:", error);
-        res.status(500).send('Server Error: Kunne ikke oprette stack.2');
+        res.status(500).send('Server Error: Kunne ikke oprette stack.');
     }
 };
-

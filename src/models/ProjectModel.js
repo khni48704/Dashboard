@@ -8,7 +8,8 @@ exports.getStack = async (email) => {
             Project.create_date, 
             Users.email, 
             Users.first_name, 
-            Users.last_name 
+            Users.last_name, 
+            Project.portainer_id
          FROM 
             Project 
          INNER JOIN 
