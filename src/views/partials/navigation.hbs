@@ -12,8 +12,10 @@
         </svg>
         
       {{#if user}}
+    <div> 
     <h2>{{user.first_name}} {{user.last_name}} </h2>
-    <h4>{{user.email}}</p></h4>
+    <h4>{{user.email}}</h4>
+    </div>  
 {{else}}
     <p>Ingen brugerdata tilgængelige.</p>
 {{/if}}
