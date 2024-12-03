@@ -15,14 +15,17 @@
   <div class="default-div">
     <h1>Create project</h1>
     <form method="POST" action="/add-project">
+      <h3 class="createproject_text">Project name</h3>
       <input type="text" name="project_name" placeholder="Project name" required />
+      <h3 class="createproject_text">URL</h3>
       <input type="text" name="url" placeholder="URL" required />
 
+      <h3 class="createproject_text">Select group</h3>
       <select name="group_id" required>
         <option value="WUOE24">WUOE24</option>
         <option value="WUOE23">WUOE23</option>
       </select>  
-
+      <h3 class="createproject_text">Select template type</h3>
       <select name="template_id" required>
         <option value="drupla" name="Drupla">Drupla</option>
         <option value="wordpress" name="Wordpress">Wordpress</option>
