@@ -112,6 +112,9 @@ exports.createStack = async (req, res) => {
     try {
         const { project_name, url, template_id, group_id } = req.body;
 
+        const templateIdFound = await ProjectModel.getTemplate(template_id);
+        const groupIdFound = await ProjectModel.getGroup(group_id);
+
         console.log('Session ved oprettelse af stack:', req.session.user);
 
         const userId = req.session.user ? req.session.user.user_id : null;
@@ -178,8 +181,8 @@ exports.createStack = async (req, res) => {
             project_name,
             url,
             userId,
-            template_id,
-            group_id,
+            template_id: templateIdFound,
+            group_id: groupIdFound,
             create_date: new Date(),
             portainer_id
         });

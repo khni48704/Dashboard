@@ -16,12 +16,20 @@
     <h1>Create project</h1>
     <form method="POST" action="/add-project">
       <input type="text" name="project_name" placeholder="Project name" required />
-      <input type="text" name="url" placeholder="Subdomain" required />
-      
-  
-      <select name="template" required>
-        <option value="template">Template</option>
-        <option value="wordpress">Wordpress</option>
+      <input type="text" name="url" placeholder="URL" required />
+
+      <select name="group_id" required>
+        <option value="WUOE24">WUOE24</option>
+        <option value="WUOE23">WUOE23</option>
+      </select>  
+
+      <select name="template_id" required>
+        <option value="template" name="Drupla">Drupla</option>
+        <option value="wordpress" name="Wordpress">Wordpress</option>
+        <option value="joomla" name="Joomla">Joomla</option>
+        <option value="Pretashop" name="Pretashop">Pretashop</option>
+
+
       </select>
       
  <!-- Disse to linjer er skjulte, da jeg gerne vil sende den data med over i poratiner, hvis vi skal bruge det senere til at hente, kan fjernes hvis ikke de skal med og ikke bruges-->
