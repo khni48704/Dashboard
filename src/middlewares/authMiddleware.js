@@ -18,9 +18,3 @@ module.exports = (req, res, next) => {
   }
 };
 
-
-// THEME
-app.use((req, res, next) => {
-  res.locals.theme = req.session.theme || 'light-mode'; // Default to light-mode
-  next();
-});
