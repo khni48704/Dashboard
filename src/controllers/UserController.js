@@ -14,9 +14,11 @@ exports.getUsers = async (req, res) => {
 };
 exports.createUser = async (req, res) => {
     try {
-        const {first_name, last_name, email, password} = req.body;
-        const users = await UserModel.createUser({first_name, last_name, email, password});
-        res.redirect('/projects');
+        const {first_name, last_name, email, password, group_id} = req.body;        
+        const groupIdToUser = await UserModel.getGroupForUser(group_id);
+        const users = await UserModel.createUser({first_name, last_name, email, password, group_id:groupIdToUser});
+
+        return res.redirect('/index'); 
     } catch(error) {
         res.status(500).send('Server Error');
     }

@@ -24,10 +24,10 @@
       </select>  
 
       <select name="template_id" required>
-        <option value="template" name="Drupla">Drupla</option>
+        <option value="drupla" name="Drupla">Drupla</option>
         <option value="wordpress" name="Wordpress">Wordpress</option>
         <option value="joomla" name="Joomla">Joomla</option>
-        <option value="Pretashop" name="Pretashop">Pretashop</option>
+        <option value="pretashop" name="Pretashop">Pretashop</option>
 
 
       </select>
@@ -38,35 +38,9 @@
       
       <button type="submit">Create project</button>
     </form>
-    
-    <div class="myProgress">
-      <div id="create_animation"></div>
-    </div>
-  </div>
 </section>
 </body>
 </html>
-
-<script>
-var i = 0;
-function move() {
-  if (i == 0) {
-    i = 1;
-    var elem = document.getElementById("create_animation");
-    var width = 1;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 100) {
-        clearInterval(id);
-        i = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
-      }
-    }
-  }
-}
-</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
