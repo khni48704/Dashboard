@@ -4,9 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
     <link rel="stylesheet" href="/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet"> 
     <link
       href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="styles"
+      rel="stylesheet"
     />
 </head>
 <body class="body-flex">
@@ -33,7 +34,8 @@
                 </button>
                 <br>
                 <h3>Change font</h3>
-                <button><a>Change font</a></button>
+                <button id="change-font"><a>Change font</a></button>
+                <div class="accessibilityFont">Skift font</div>
             </div>
         </div>
 
@@ -42,9 +44,16 @@
     
 </body>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOMContentLoaded fired");
     const themeToggle = document.getElementById("theme-toggle");
+    const changeFont = document.getElementById("change-font");
+    const fontElement = document.querySelector(".accessibilityFont");
+    const savedFont = localStorage.getItem("font");
     const body = document.body;
+
+        console.log("savedFont:", savedFont);
+
 
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
@@ -57,6 +66,32 @@
         themeToggle.querySelector(".icon-darklightmode").textContent = isDarkMode ? "☀️" : "🌙";
 
         localStorage.setItem("theme", isDarkMode ? "dark-mode" : "light-mode");
+    });
+    
+    
+    if (savedFont === "isAccessible") {
+        body.classList.add("isAccessible");
+        if (fontElement) {
+            fontElement.textContent = "Accessible font";
+            console.log("1");
+        }
+    } else {
+        body.classList.remove("isAccessible");
+        if (fontElement) {
+            fontElement.textContent = "Default font";
+            console.log("2");
+        }
+    }
+
+    changeFont.addEventListener("click", () => {
+        const isAccessible = body.classList.toggle("isAccessible");
+        console.log("3");
+        if (fontElement) {
+            fontElement.textContent = isAccessible ? "Accessible font" : "Default font";
+            console.log("4");
+        }
+
+        localStorage.setItem("font", isAccessible ? "isAccessible" : "notAccessible");
     });
 });
 </script>

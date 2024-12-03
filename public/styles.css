@@ -31,7 +31,7 @@ body.dark-mode {
     color: var(--text-dark);
 }
 
-* {
+html {
     font-family: "Roboto", sans-serif;
 }
 
@@ -110,6 +110,10 @@ body.dark-mode input,
 body.dark-mode select {
     background-color: var(--input-bg-dark);
     color: var(--input-bg-light);
+}
+
+html body.isAccessible {
+    font-family: "Comic Neue", sans-serif, Arial, sans-serif !important;
 }
 
 input::placeholder {
@@ -488,7 +492,7 @@ button:active {
 
 }
 
-.icon-darklightmode {
+.icon-htmode {
     border-radius: 20px;
     transition: transform 0.3s ease, background-color 0.3s ease;
 }

@@ -4,7 +4,7 @@ const axios = require('axios');
 
 // Funktion til at hente containerens status fra Portainer API
 async function getContainerStatus(authToken, containerId) {
-    console.log("containerid:",containerId);
+    //console.log("containerid:",containerId);
     try {
         const containerResponse = await axios.get(`https://portainer.kubelab.dk/api/stacks`, {
             headers: {
@@ -12,13 +12,13 @@ async function getContainerStatus(authToken, containerId) {
             }
         });
 
-        console.log("API Response:", containerResponse.data);
+        //console.log("API Response:", containerResponse.data);
 
         const stack = containerResponse.data.find(stack => stack.Id === containerId);
-        console.log(stack, containerId);
+        //console.log(stack, containerId);
 
         if (stack) {
-            console.log("Stack found:", stack);
+            //console.log("Stack found:", stack);
             if (stack.Status === 1) {
                 return 'Running';
             }
@@ -43,14 +43,14 @@ exports.getStack = async (req, res) => {
         const emailSent = req.session.user.email;
         console.log("User email:", emailSent);
         const stacks = await ProjectModel.getStack(emailSent);
-        console.log("Stacks:", stacks);
+        //console.log("Stacks:", stacks);
 
         if (!stacks || stacks.lenght === 0) {
             console.log("Ingen stacks fundet for bruger:", emailSent);
             return res.status(404).send("Ingen stacks fundet.");
         }
 
-        console.log("Hentede stacks fra databasen:", stacks);
+        //console.log("Hentede stacks fra databasen:", stacks);
 
         const authToken = await getAuthToken();
         if (!authToken) {
@@ -60,18 +60,16 @@ exports.getStack = async (req, res) => {
 
         for (let stack of stacks) {
             const containerId = stack.portainer_id;
-            console.log(containerId , "linje52")
-            const containerStatus = await getContainerStatus(authToken, containerId);
-            console.log(containerId , "linje58")
-            stack.containerStatus = containerStatus;
-            console.log(stacks.Id);
+            //const containerStatus = await getContainerStatus(authToken, containerId);
+            //stack.containerStatus = containerStatus;
+            //console.log(stacks.Id);
 
             if (!containerId) {
                 console.log(`Stack with ID ${stack.project_name} has no Portainer ID.`);
                 stack.containerStatus = 'Unknown';
             } else {
                 const containerStatus = await getContainerStatus(authToken, containerId);
-                console.log("Container Status for", containerId, "linje58");
+                //console.log("Container Status for", containerId, "linje58");
                 stack.containerStatus = containerStatus;
             }
         }
