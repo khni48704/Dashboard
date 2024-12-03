@@ -18,7 +18,7 @@ exports.createUser = async (req, res) => {
         const groupIdToUser = await UserModel.getGroupForUser(group_id);
         const users = await UserModel.createUser({first_name, last_name, email, password, group_id:groupIdToUser});
 
-        return res.redirect('/index'); 
+        return res.redirect('/projects'); 
     } catch(error) {
         res.status(500).send('Server Error');
     }
