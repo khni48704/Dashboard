@@ -190,3 +190,15 @@ exports.createStack = async (req, res) => {
         res.status(500).send('Server Error: Kunne ikke oprette stack.');
     }
 };
+
+// SAVE THEME
+exports.setTheme = (req, res) => {
+    const theme = req.body.theme; // Assuming the theme is sent via a POST request
+    if (theme === 'dark-mode' || theme === 'light-mode') {
+        req.session.theme = theme; // Save the theme in the session
+        res.status(200).json({ message: 'Theme updated successfully', theme });
+    } else {
+        res.status(400).json({ message: 'Invalid theme' });
+    }
+};
+
