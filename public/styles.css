@@ -130,7 +130,7 @@ button {
     color: var(--button-text);
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 a {
@@ -140,7 +140,7 @@ a {
 }
 
 body.dark-mode a {
-    color: var(--text-dark);
+    color: var(--text-light);
 }
 
 a:hover {
@@ -473,11 +473,16 @@ body {
 }
 
 #theme-toggle:active {
-    transform: scale(1.2);
+    transform: scale(1.1);
     background-color: #ccc;
 
 }
 
+button:active {
+    transform: scale(1.1);
+    background-color: #ccc;
+
+}
 
 .icon-darklightmode {
     border-radius: 20px;
