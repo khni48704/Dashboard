@@ -457,6 +457,7 @@ body {
     font-size: 30px;
     border: none;
     height: 45px;
+    color: var(--button-text);
     border-radius: 20px;
     cursor: pointer;
     background-color: #B8BFFF;
