@@ -47,3 +47,14 @@ exports.findUserByEmailAndPassword = async (email, password) => {
   return null;
 };
 
+
+
+exports.findUserById = async (userId) => {
+  const [rows] = await db.query('SELECT * FROM Users WHERE user_id = ?', [userId]);
+  return rows[0];  // Return the user object
+};
+
+exports.updatePassword = async (userId, newPassword) => {
+  const [result] = await db.execute('UPDATE Users SET password = ? WHERE user_id = ?', [newPassword, userId]);
+  return result;
+};
