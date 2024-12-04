@@ -116,7 +116,7 @@ html body.isAccessible {
     font-family: "Comic Neue", sans-serif, Arial, sans-serif !important;
 }
 
-html body.isAccessible button, input, select{
+html body.isAccessible button, html body.isAccessible input, html body.isAccessible select{
     font-family: "Comic Neue", sans-serif, Arial, sans-serif !important;
 }
 
