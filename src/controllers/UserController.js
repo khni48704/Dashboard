@@ -60,3 +60,33 @@ exports.loginUser = async (req, res) => {
         return res.status(500).render('index', { error: 'Server error' });
     }
 };
+
+
+
+
+exports.changePassword = async (req, res) => {
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+    const userId = req.session.user.user_id; // Get user ID fra session
+
+    try {
+        if (newPassword !== confirmPassword) {
+            return res.status(400).render('changePassword', { error: "Passwords don't match" });
+        }
+
+        // Find user by ID for at få password
+        const user = await UserModel.findUserById(userId);
+
+        if (user.password !== currentPassword) {
+            return res.status(400).render('changePassword', { error: "Current password is incorrect" });
+        }
+
+        // Update password i databasen
+        await UserModel.updatePassword(userId, newPassword);
+
+        // Redirect til settings page
+        res.redirect('/settings');
+    } catch (error) {
+        console.error(error);
+        return res.status(500).render('changePassword', { error: 'Server error' });
+    }
+};
