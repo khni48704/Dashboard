@@ -145,18 +145,22 @@ button {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
+button:hover {
+    background-color: #B8BFFF99;
+}
+
 a {
     color: var(--text-light);
     text-decoration: none;
     cursor: pointer;
 }
 
-body.dark-mode a {
-    color: var(--text-light);
+a:hover {
+    text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
+body.dark-mode a {
+    color: var(--text-light);
 }
 
 .icon path {
@@ -479,16 +483,20 @@ body {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.btn-flex {
-    display: flex;
-    width: auto !important;
-}
-
 #theme-toggle:active {
     transform: scale(1.1);
     background-color: #ccc;
 
 }
+
+#theme-toggle:hover {
+    background-color: #B8BFFF99;
+}
+.btn-flex {
+    display: flex;
+    width: auto !important;
+}
+
 
 button:active {
     transform: scale(1.1);
@@ -725,6 +733,38 @@ a:hover #restart-animation {
         flex-direction: column;
         gap: 20px;
     }
+
+    .status svg {
+        display: none;
+    }
+
+    .status-container {
+        width: 25% !important;
+    }
+
+    .table {
+        width: 37.5% !important;
+    }
+}
+
+@media screen and (max-width: 435px) {
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+    
 }
 
 
