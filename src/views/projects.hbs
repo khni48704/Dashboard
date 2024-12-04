@@ -178,13 +178,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function deleteProject(project_id) {
         fetch(`/deleteStack`, {
-            method: 'POST',  // or 'DELETE', depending on your API design
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ project_id: project_id })  // Send project_id instead of stackId
+            body: JSON.stringify({ project_id: project_id })
         })
         .then(response => {
             if (response.ok) {
-                // Redirect or refresh the page
                 window.location.reload();
             } else {
                 console.error('Error deleting project');
