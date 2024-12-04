@@ -36,91 +36,90 @@
           <h4 class="status-container">Status</h4>
         </div>
 
-    {{#each stacks}}
-        <div class="projects-wrap">
+  {{#each stacks}}
+    <div class="projects-wrap">
         <div class="projects">
-          <div class="projects-main-details" onclick="toggleDropdown(this)">
-            <h2 class="tabel">{{this.project_name}}</h2>
-            <h2 class="tabel" id="table-hide">ksma4320</h2>
-            <h2 class="tabel">{{this.group_name}}</h2>
-              <div class="status-container">
-                <div class="status">
-                  <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path class="icon-stroke" d="M10.3333 18.8333C14.9357 18.8333 18.6667 15.1023 18.6667 10.5C18.6667 5.89759 14.9357 2.16663 10.3333 2.16663C5.73096 2.16663 2 5.89759 2 10.5C2 15.1023 5.73096 18.8333 10.3333 18.8333Z" stroke="white" stroke-width="1.25"/>
-                    <path class="icon-fill" d="M7.91663 9.81091V11.189C7.91663 12.4973 7.91663 13.1514 8.29643 13.4159C8.67621 13.6802 9.19563 13.3877 10.2345 12.8027L11.458 12.1135C12.7082 11.4095 13.3333 11.0575 13.3333 10.5C13.3333 9.94249 12.7082 9.59047 11.458 8.88642L10.2345 8.19731C9.19563 7.61224 8.67621 7.3197 8.29643 7.5841C7.91663 7.84849 7.91663 8.50263 7.91663 9.81091Z" fill="white"/>
-                  </svg>
-                  <h2>{{this.containerStatus}}</h2>
+            <div class="projects-main-details" onclick="toggleDropdown(this)">
+                <h2 class="tabel">{{this.project_name}}</h2>
+                <h2 class="tabel" id="table-hide">ksma4320</h2>
+                <h2 class="tabel">{{this.group_name}}</h2>
+                <div class="status-container">
+                    <div class="status">
+                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="icon-stroke" d="M10.3333 18.8333C14.9357 18.8333 18.6667 15.1023 18.6667 10.5C18.6667 5.89759 14.9357 2.16663 10.3333 2.16663C5.73096 2.16663 2 5.89759 2 10.5C2 15.1023 5.73096 18.8333 10.3333 18.8333Z" stroke="white" stroke-width="1.25"/>
+                            <path class="icon-fill" d="M7.91663 9.81091V11.189C7.91663 12.4973 7.91663 13.1514 8.29643 13.4159C8.67621 13.6802 9.19563 13.3877 10.2345 12.8027L11.458 12.1135C12.7082 11.4095 13.3333 11.0575 13.3333 10.5C13.3333 9.94249 12.7082 9.59047 11.458 8.88642L10.2345 8.19731C9.19563 7.61224 8.67621 7.3197 8.29643 7.5841C7.91663 7.84849 7.91663 8.50263 7.91663 9.81091Z" fill="white"/>
+                        </svg>
+                        <h2>{{this.containerStatus}}</h2>
+                    </div>
+                    <svg class="icon" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="icon-stroke" d="M11 1.00004C11 1.00004 7.31758 6 6 6C4.68233 6 1 1 1 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
-              <svg class="icon" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="icon-stroke" d="M11 1.00004C11 1.00004 7.31758 6 6 6C4.68233 6 1 1 1 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              </div>
-          </div>
-          <div class="projects-dropdown">
-            <div class="info-wrap">
-              <div class="info-box">
-                <h4>Mail</h4>
-                <h2>{{this.email}}</h2>
-              </div>
-              <div class="info-box" id="info-box-hide">
-                <h4>Initials</h4>
-                <h2>ksma4320</h2>
-              </div>
-              <div class="info-box">
-                <h4>URL</h4>
-                <h2>{{this.url}}</h2>
-              </div>
-              <div class="info-box">
-                <h4>Template type</h4>
-                <h2>{{this.template}}</h2>
-              </div>
-              <div class="info-box-2">
-                <h4>Created date</h4>
-                <h2>{{this.create_date}}</h2>
-              </div>
             </div>
+            <div class="projects-dropdown">
+                <div class="info-wrap">
+                    <div class="info-box">
+                        <h4>Mail</h4>
+                        <h2>{{this.email}}</h2>
+                    </div>
+                    <div class="info-box" id="info-box-hide">
+                        <h4>Initials</h4>
+                        <h2>ksma4320</h2>
+                    </div>
+                    <div class="info-box">
+                        <h4>URL</h4>
+                        <h2>{{this.url}}</h2>
+                    </div>
+                    <div class="info-box">
+                        <h4>Template type</h4>
+                        <h2>{{this.template}}</h2>
+                    </div>
+                    <div class="info-box-2">
+                        <h4>Created date</h4>
+                        <h2>{{this.create_date}}</h2>
+                    </div>
+                </div>
 
-            <div class="dropdown-buttons">
-              <div class="btn-wrap">
-              <a class="projects-button" href="">
-                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10.3333 18.8333C14.9357 18.8333 18.6667 15.1023 18.6667 10.5C18.6667 5.89759 14.9357 2.16663 10.3333 2.16663C5.73096 2.16663 2 5.89759 2 10.5C2 15.1023 5.73096 18.8333 10.3333 18.8333Z" stroke="black" stroke-width="1.25"/>
-                  <path d="M7.91663 9.81091V11.189C7.91663 12.4973 7.91663 13.1514 8.29643 13.4159C8.67621 13.6802 9.19563 13.3877 10.2345 12.8027L11.458 12.1135C12.7082 11.4095 13.3333 11.0575 13.3333 10.5C13.3333 9.94249 12.7082 9.59047 11.458 8.88642L10.2345 8.19731C9.19563 7.61224 8.67621 7.3197 8.29643 7.5841C7.91663 7.84849 7.91663 8.50263 7.91663 9.81091Z" fill="black"/>
-                </svg>
-                <h2>Start</h2>
-              </a>
-              <a class="projects-button"  href="">
-                <svg id="restart-animation" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13.1472 15.4583C15.1681 14.0699 16.5 11.6957 16.5 9C16.5 4.7198 13.1422 1.25 9 1.25C8.42717 1.25 7.86933 1.31636 7.33333 1.44205M13.1472 15.4583V12.4444M13.1472 15.4583H16.0833M4.83333 2.55506C2.82336 3.94534 1.5 6.31297 1.5 9C1.5 13.2802 4.85787 16.75 9 16.75C9.57283 16.75 10.1307 16.6836 10.6667 16.558M4.83333 2.55506V5.55556M4.83333 2.55506H1.91667" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <h2>Restart</h2>
-              </a>
-              </div>
-              <div class="btn-wrap">
-              <a class="projects-button" href="">
-                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9.99996 18.8333C14.6023 18.8333 18.3333 15.1023 18.3333 10.5C18.3333 5.89759 14.6023 2.16663 9.99996 2.16663C5.39759 2.16663 1.66663 5.89759 1.66663 10.5C1.66663 15.1023 5.39759 18.8333 9.99996 18.8333Z" stroke="black" stroke-width="1.25"/>
-                  <path d="M7.91663 8V13M12.0833 8V13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <h2>Stop</h2>
-              </a>
-<form method="POST" action="/delete-project">
-    <input type="hidden" name="project_id" value="{{this.project_id}}" />
-    <button type="submit" id="delete-button" class="projects-button">
-        <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.25 5.40283L15.7336 14.0356C15.6016 16.2411 15.5357 17.3439 15.0007 18.1369C14.7361 18.5288 14.3956 18.8597 14.0006 19.1083C13.2017 19.6112 12.1325 19.6112 9.99392 19.6112C7.8526 19.6112 6.78192 19.6112 5.98254 19.1073C5.58733 18.8583 5.24667 18.5269 4.98223 18.1342C4.4474 17.3401 4.38287 16.2357 4.25384 14.027L3.75 5.40283" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
-            <path d="M2.5 5.40256H17.5M13.3797 5.40256L12.8109 4.18988C12.433 3.38434 12.244 2.98156 11.9181 2.73037C11.8458 2.67465 11.7693 2.62508 11.6892 2.58216C11.3283 2.38867 10.8951 2.38867 10.0287 2.38867C9.14067 2.38867 8.69667 2.38867 7.99392 2.38867" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
-        </svg>
-        <h2>Delete</h2>
-    </button>
-</form>
-  <!-- ><h3>Project ID: {{this.project_id}}</h3>
-<h3>Portainer ID: {{this.portainer_id}}</h3>-->
-   </div>
+                <div class="dropdown-buttons">
+                    <div class="btn-wrap">
+                        <a class="projects-button" href="">
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.3333 18.8333C14.9357 18.8333 18.6667 15.1023 18.6667 10.5C18.6667 5.89759 14.9357 2.16663 10.3333 2.16663C5.73096 2.16663 2 5.89759 2 10.5C2 15.1023 5.73096 18.8333 10.3333 18.8333Z" stroke="black" stroke-width="1.25"/>
+                                <path d="M7.91663 9.81091V11.189C7.91663 12.4973 7.91663 13.1514 8.29643 13.4159C8.67621 13.6802 9.19563 13.3877 10.2345 12.8027L11.458 12.1135C12.7082 11.4095 13.3333 11.0575 13.3333 10.5C13.3333 9.94249 12.7082 9.59047 11.458 8.88642L10.2345 8.19731C9.19563 7.61224 8.67621 7.3197 8.29643 7.5841C7.91663 7.84849 7.91663 8.50263 7.91663 9.81091Z" fill="black"/>
+                            </svg>
+                            <h2>Start</h2>
+                        </a>
+                        <a class="projects-button" href="">
+                            <svg id="restart-animation" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.1472 15.4583C15.1681 14.0699 16.5 11.6957 16.5 9C16.5 4.7198 13.1422 1.25 9 1.25C8.42717 1.25 7.86933 1.31636 7.33333 1.44205M13.1472 15.4583V12.4444M13.1472 15.4583H16.0833M4.83333 2.55506C2.82336 3.94534 1.5 6.31297 1.5 9C1.5 13.2802 4.85787 16.75 9 16.75C9.57283 16.75 10.1307 16.6836 10.6667 16.558M4.83333 2.55506V5.55556M4.83333 2.55506H1.91667" stroke="black" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <h2>Restart</h2>
+                        </a>
+                    </div>
+                    <div class="btn-wrap">
+                        <a class="projects-button" href="">
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.99996 18.8333C14.6023 18.8333 18.3333 15.1023 18.3333 10.5C18.3333 5.89759 14.6023 2.16663 9.99996 2.16663C5.39759 2.16663 1.66663 5.89759 1.66663 10.5C1.66663 15.1023 5.39759 18.8333 9.99996 18.8333Z" stroke="black" stroke-width="1.25"/>
+                                <path d="M7.91663 8V13M12.0833 8V13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <h2>Stop</h2>
+                        </a>
+                        <form method="POST" action="/delete-project">
+                            <input type="hidden" name="project_id" value="{{this.project_id}}" />
+                            <button type="submit" id="delete-button" class="projects-button">
+                                <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.25 5.40283L15.7336 14.0356C15.6016 16.2411 15.5357 17.3439 15.0007 18.1369C14.7361 18.5288 14.3956 18.8597 14.0006 19.1083C13.2017 19.6112 12.1325 19.6112 9.99392 19.6112C7.8526 19.6112 6.78192 19.6112 5.98254 19.1073C5.58733 18.8583 5.24667 18.5269 4.98223 18.1342C4.4474 17.3401 4.38287 16.2357 4.25384 14.027L3.75 5.40283" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
+                                    <path d="M2.5 5.40256H17.5M13.3797 5.40256L12.8109 4.18988C12.433 3.38434 12.244 2.98156 11.9181 2.73037C11.8458 2.67465 11.7693 2.62508 11.6892 2.58216C11.3283 2.38867 10.8951 2.38867 10.0287 2.38867C9.14067 2.38867 8.69667 2.38867 7.99392 2.38867" stroke="white" stroke-width="1.25" stroke-linecap="round"/>
+                                </svg>
+                                <h2>Delete</h2>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        {{/each}}
+    </div>
+{{/each}}
         </div>
 
       </div>
