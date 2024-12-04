@@ -11,14 +11,23 @@ exports.getStack = async (email) => {
             Users.last_name, 
             Project.portainer_id,
             Users.group_id,
-            Project.template_id
+            Template.template,
+            \`Group\`.group_name
          FROM 
             Project 
          INNER JOIN 
             Users 
          ON 
             Project.user_id = Users.user_id 
-         WHERE 
+        INNER JOIN
+            Template
+        ON
+            Project.template_id = Template.template_id
+        INNER JOIN
+            \`Group\`
+        ON
+            Project.group_id = \`Group\`.group_id
+        WHERE 
             Users.email = ?`,
         [email]
     );
