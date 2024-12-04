@@ -29,13 +29,11 @@
                 <br>
                 <h3>Dark/light mode</h3>
                 <button id="theme-toggle" aria-label="Toggle Theme">
-                    <span class="icon-darklightmode">🌙</span>
-                <h2>Change mode</h2>
-                </button>
+                    <span class="icon-darklightmode">🌙</span>Change mode</button>
                 <br>
                 <h3>Change font</h3>
                 <button id="change-font"><a>Change font</a></button>
-                <div class="accessibilityFont">Skift font</div>
+                <div class="accessibilityFont"></div>
             </div>
         </div>
 
@@ -72,13 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (savedFont === "isAccessible") {
         body.classList.add("isAccessible");
         if (fontElement) {
-            fontElement.textContent = "Accessible font";
+            fontElement.textContent = "";
             console.log("1");
         }
     } else {
         body.classList.remove("isAccessible");
         if (fontElement) {
-            fontElement.textContent = "Default font";
+            fontElement.textContent = "";
             console.log("2");
         }
     }
@@ -87,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const isAccessible = body.classList.toggle("isAccessible");
         console.log("3");
         if (fontElement) {
-            fontElement.textContent = isAccessible ? "Accessible font" : "Default font";
+            fontElement.textContent = isAccessible ? "" : "";
             console.log("4");
         }
 
