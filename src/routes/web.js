@@ -56,6 +56,8 @@ router.post('/login', userController.loginUser);
 router.get('/stacks', projectController.getStack);
 router.post('/add-project', projectController.createStack);
 
+router.post('/delete-project', requireAuth, projectController.deleteStack);
+
 router.get('/', (req, res) => {
     res.render('index.hbs');
 });

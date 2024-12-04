@@ -105,7 +105,29 @@ async function getAuthToken() {
     }
 }
 
-// Funktion til at oprette stack
+
+exports.deleteStack = async (req, res) => {
+    try {
+        const project_id = req.body.project_id;
+        const userId = req.session.user.user_id;
+        console.log("User ID:", userId)
+        console.log("Deleting project with ID:", project_id)
+
+        const result = await ProjectModel.deleteStack(project_id, userId);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).send("Project not found or permission denied.");
+        }
+
+        
+        res.redirect('/projects');
+    } catch (error) {
+        console.error("Error deleting project:", error.message);
+        console.error("Stack trace:", error.stack);
+        res.status(500).send("Error deleting project.");
+    }
+};
+
 exports.createStack = async (req, res) => {
     try {
         const { project_name, url, template_id, group_id } = req.body;
@@ -127,13 +149,12 @@ exports.createStack = async (req, res) => {
             return res.status(401).send('Manglende JWT-token');
         }
 
-        const authToken = await getAuthToken(); // Hent auth token fra Portainer
+        const authToken = await getAuthToken();
         if (!authToken) {
             console.log('Mangler auth-token fra Portainer API');
             return res.status(500).send('Mangler auth-token fra Portainer API');
         }
 
-        // Opret stacken på Portainer
         const stackData = {
             fromTemplate: false,
             name: project_name,
@@ -191,5 +212,3 @@ exports.createStack = async (req, res) => {
         res.status(500).send('Server Error: Kunne ikke oprette stack.');
     }
 };
-
-

@@ -3,6 +3,7 @@ const db = require('../config/db.js');
 exports.getStack = async (email) => {
     const [rows] = await db.query(
         `SELECT 
+            Project.project_id,   
             Project.project_name, 
             Project.url, 
             Project.create_date, 
@@ -66,4 +67,18 @@ exports.createStack = async (stack) => {
         ]
     );
     return result;
+};
+
+exports.deleteStack = async (project_id, userId) => {
+    try {
+        // Delete the project by project_id and user_id to ensure the user can only delete their own projects
+        const [result] = await db.execute(
+            `DELETE FROM Project WHERE project_id = ? AND user_id = ?`, 
+            [project_id, userId]
+        );
+        return result;
+    } catch (error) {
+        console.error("Error deleting project:", error);
+        throw new Error("Error deleting project from database");
+    }
 };
