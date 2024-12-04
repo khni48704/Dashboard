@@ -110,16 +110,49 @@ exports.deleteStack = async (req, res) => {
     try {
         const project_id = req.body.project_id;
         const userId = req.session.user.user_id;
-        console.log("User ID:", userId)
-        console.log("Deleting project with ID:", project_id)
+        console.log("User ID:", userId);
+        console.log("Project ID:", project_id);
 
-        const result = await ProjectModel.deleteStack(project_id, userId);
+        // Få portainer_id fra din database for dette projekt
+        const project = await ProjectModel.getProjectById(project_id, userId);
+        if (!project) {
+            return res.status(404).send("Project not found or permission denied.");
+        }
+
+        const portainer_id = project.portainer_id;
+        console.log("Portainer ID:", portainer_id);
+
+        const authToken = await getAuthToken();
+        if (!authToken) {
+            console.log('Missing auth-token');
+            return res.status(500).send('Missing auth-token');
+        }
+
+        const endpointUrl = `https://portainer.kubelab.dk/api/stacks/${portainer_id}?endpointId=5`;
+
+        try {
+            const portainerResponse = await axios.delete(endpointUrl, {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`
+                }
+            });
+
+            console.log("Portainer API response:", portainerResponse.data);
+            console.log(`Portainer stack with ID ${portainer_id} has now been deleted.`);
+        } catch (portainerError) {
+            console.error("Error deleting stack from Portainer:", portainerError.response?.data || portainerError.message);
+            return res.status(500).send("Error deleting stack from Portainer.");
+        }
+
+        const result = await ProjectModel.deleteStack(project_id, userId, portainer_id);
 
         if (result.affectedRows === 0) {
             return res.status(404).send("Project not found or permission denied.");
         }
 
-        
+   
+        console.log(`Project with ID ${project_id} has now been deleted from the database.`);
+
         res.redirect('/projects');
     } catch (error) {
         console.error("Error deleting project:", error.message);
@@ -127,6 +160,7 @@ exports.deleteStack = async (req, res) => {
         res.status(500).send("Error deleting project.");
     }
 };
+
 
 exports.createStack = async (req, res) => {
     try {
