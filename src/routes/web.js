@@ -100,4 +100,7 @@ router.get('/changePassword', (req, res) => {
     res.render('changePassword')
 });
 
+router.post('/changePassword', requireAuth, userController.changePassword);
+
+
 module.exports = router;
