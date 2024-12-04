@@ -708,3 +708,23 @@ a:hover #restart-animation {
 }
 
 
+@media screen and (max-width: 515px) {
+
+
+
+    nav {
+        position: fixed;
+        margin-right: 15px;
+    }
+
+    .section-main {
+        margin-top: 100px;
+    }
+
+    .navlist-mobile-wrap {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+
