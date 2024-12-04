@@ -4,6 +4,7 @@ exports.getStack = async (email) => {
     const [rows] = await db.query(
         `SELECT 
             Project.project_id,   
+            Project.portainer_id,
             Project.project_name, 
             Project.url, 
             Project.create_date, 
@@ -69,12 +70,20 @@ exports.createStack = async (stack) => {
     return result;
 };
 
-exports.deleteStack = async (project_id, userId) => {
+exports.getProjectById = async (project_id, userId) => {
+    const [rows] = await db.execute(
+        `SELECT * FROM Project WHERE project_id = ? AND user_id = ?`,
+        [project_id, userId]
+    );
+    return rows[0]; // Returner første (eller ingen) række
+};
+
+exports.deleteStack = async (project_id, userId, portainer_id) => {
     try {
-        // Delete the project by project_id and user_id to ensure the user can only delete their own projects
+        // Slet projektet fra databasen
         const [result] = await db.execute(
-            `DELETE FROM Project WHERE project_id = ? AND user_id = ?`, 
-            [project_id, userId]
+            `DELETE FROM Project WHERE project_id = ? AND user_id = ? AND portainer_id = ?`, 
+            [project_id, userId, portainer_id]
         );
         return result;
     } catch (error) {
