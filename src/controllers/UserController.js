@@ -66,24 +66,24 @@ exports.loginUser = async (req, res) => {
 
 exports.changePassword = async (req, res) => {
     const { currentPassword, newPassword, confirmPassword } = req.body;
-    const userId = req.session.user.user_id; // Get user ID from session
+    const userId = req.session.user.user_id; // Get user ID fra session
 
     try {
         if (newPassword !== confirmPassword) {
             return res.status(400).render('changePassword', { error: "Passwords don't match" });
         }
 
-        // Find the user by ID to get the current password
+        // Find user by ID for at få password
         const user = await UserModel.findUserById(userId);
 
         if (user.password !== currentPassword) {
             return res.status(400).render('changePassword', { error: "Current password is incorrect" });
         }
 
-        // Update the password in the database
+        // Update password i databasen
         await UserModel.updatePassword(userId, newPassword);
 
-        // Redirect to a success page or render success message
+        // Redirect til settings page
         res.redirect('/settings');
     } catch (error) {
         console.error(error);
