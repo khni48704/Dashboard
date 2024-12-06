@@ -381,8 +381,16 @@ body.dark-mode .projects:hover h4 {
     color: var(--text-muted-light);
 }
 
-.projects:hover .icon-stroke {
-    stroke: #160F29;
+.projects .icon-stroke {
+    stroke: var(--text-light);
+}
+
+.projects .icon-fill {
+    fill: var(--text-light);
+}
+
+body.darkmode .projects .icon-stroke {
+    stroke: var(--text-dark)
 }
 
 .projects:hover .icon-fill {
