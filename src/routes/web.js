@@ -3,7 +3,6 @@ const userController = require('../controllers/UserController');
 const projectController = require('../controllers/ProjectController');
 const router = express.Router();
 const session = require('express-session');
-const authMiddleware = require('../middlewares/authMiddleware');
 
 // Opsætter vores session middleware
 router.use(session({

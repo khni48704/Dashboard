@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 const ProjectModel = require('../models/ProjectModel');
 //et library der håndtere HHTP request fra både browser og node.js environments
 const axios = require('axios');
