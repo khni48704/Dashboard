@@ -103,5 +103,4 @@ router.get('/changePassword', (req, res) => {
     res.render('changePassword')
 });
 
-
 module.exports = router;

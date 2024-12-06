@@ -64,7 +64,6 @@ exports.loginUser = async (req, res) => {
     }
 };
 
-
 //Funktion til at ændre ens password
 exports.changePassword = async (req, res) => {
     const { currentPassword, newPassword, confirmPassword } = req.body;
