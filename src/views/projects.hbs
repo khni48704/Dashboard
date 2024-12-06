@@ -104,7 +104,7 @@
                             </svg>
                             <h2>Stop</h2>
                         </a>
-                        <form method="POST" action="/delete-project" onsubmit="return confirm('Er du sikker på, at du vil slette dette projekt ved navn {{this.project_name}}?')">
+                        <form class="delete-form" method="POST" action="/delete-project" onsubmit="return confirm('Er du sikker på, at du vil slette dette projekt ved navn {{this.project_name}}?')">
                             <input type="hidden" name="project_id" value="{{this.project_id}}" />
                             <button type="submit" id="delete-button" class="projects-button">
                                 <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
