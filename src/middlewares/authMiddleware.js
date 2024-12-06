@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'); //JWT token - er installeret med NPM install jsonwebtoken
 const key = 'key';
 
 module.exports = (req, res, next) => {

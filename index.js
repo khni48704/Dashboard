@@ -5,7 +5,6 @@ const bodyParser = require('body-parser'); //Middleware for node.js som parser i
 const webRoutes = require('./src/routes/web'); //Så web.js kan bruges
 const PORT = process.env.PORT || 3200; //Definerer porten som applikationen kører på
 const exphbs = require('express-handlebars'); //Library med templates - er installeret med NPM install express-handlebars
-const jwt = require('jsonwebtoken'); //JWT token - er installeret med NPM install jsonwebtoken
 
 //Gør så vi skriver .hbs på handlebars filerne
 app.engine('hbs', exphbs.engine({
