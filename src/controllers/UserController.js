@@ -3,15 +3,18 @@ const UserModel = require('../models/UserModel');
 const jwt = require('jsonwebtoken');
 const key = 'key';
 
+//Funktion til at hente brugerne fra databasen
 exports.getUsers = async (req, res) => {
     try {
         const users = await UserModel.getUsers();
         const user = req.session.user; // hent brugeren fra sessionen
         res.render('projects', { users, user }); // send både users og user til HBS
     } catch (error) {
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Error while getting an user');
     }
 };
+
+//Funktion der opretter en bruger i databasen
 exports.createUser = async (req, res) => {
     try {
         const {first_name, last_name, email, password, group_id} = req.body;        
@@ -20,13 +23,14 @@ exports.createUser = async (req, res) => {
 
         return res.redirect('/projects'); 
     } catch(error) {
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Error while creating an user');
     }
 };
 
+//Funktion til at logge ind
 exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
-    console.log('Login forsøg:', { email, password });
+    console.log('This user is trying to log in:', { email, password });
 
     try {
         // Find brugeren i databasen
@@ -57,37 +61,34 @@ exports.loginUser = async (req, res) => {
             return res.status(401).render('index', { error: "Ugyldig email eller password" });
         }
     } catch (error) {
-        console.error(error);
         return res.status(500).render('index', { error: 'Server error' });
     }
 };
 
 
-
-
+//Funktion til at ændre ens password
 exports.changePassword = async (req, res) => {
     const { currentPassword, newPassword, confirmPassword } = req.body;
-    const userId = req.session.user.user_id; // Get user ID fra session
+    const userId = req.session.user.user_id; // Få id'et på brugeren fra session
 
     try {
         if (newPassword !== confirmPassword) {
-            return res.status(400).render('changePassword', { error: "Passwords don't match" });
+            return res.status(400).render('The password is incorrect');
         }
 
-        // Find user by ID for at få password
+        // Bruger funktionen findUserById for at få password
         const user = await UserModel.findUserById(userId);
 
         if (user.password !== currentPassword) {
             return res.status(400).render('changePassword', { error: "Current password is incorrect" });
         }
 
-        // Update password i databasen
+        // Opdaterer passwordet i databasen
         await UserModel.updatePassword(userId, newPassword);
 
         // Redirect til settings page
         res.redirect('/settings');
     } catch (error) {
-        console.error(error);
         return res.status(500).render('changePassword', { error: 'Server error' });
     }
 };

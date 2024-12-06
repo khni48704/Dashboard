@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 const ProjectModel = require('../models/ProjectModel');
+//et library der håndtere HHTP request fra både browser og node.js environments
 const axios = require('axios');
 
 // Funktion til at hente containerens status fra Portainer API
 async function getContainerStatus(authToken, containerId) {
-    //console.log("containerid:",containerId);
     try {
         const containerResponse = await axios.get(`https://portainer.kubelab.dk/api/stacks`, {
             headers: {
@@ -12,13 +12,9 @@ async function getContainerStatus(authToken, containerId) {
             }
         });
 
-        //console.log("API Response:", containerResponse.data);
-
         const stack = containerResponse.data.find(stack => stack.Id === containerId);
-        //console.log(stack, containerId);
 
         if (stack) {
-            //console.log("Stack found:", stack);
             if (stack.Status === 1) {
                 return 'Running';
             }
@@ -33,47 +29,43 @@ async function getContainerStatus(authToken, containerId) {
     }
 }
 
+//Funktion til at hente stacks fra databasen og API'et
 exports.getStack = async (req, res) => {
     try {
         if (!req.session.user) {
-            console.log("user not logged");
             return res.redirect('/');
         }
 
+        //Finder brugerens email fra den session, der er
         const emailSent = req.session.user.email;
         console.log("User email:", emailSent);
+
         const stacks = await ProjectModel.getStack(emailSent);
-        //console.log("Stacks:", stacks);
 
         if (!stacks || stacks.lenght === 0) {
-            console.log("Ingen stacks fundet for bruger:", emailSent);
-            return res.status(404).send("Ingen stacks fundet.");
+            return res.status(404).send("No stacks found");
         }
 
-        //console.log("Hentede stacks fra databasen:", stacks);
-
+        //Henter JWT token fra session
         const authToken = await getAuthToken();
         if (!authToken) {
-            console.log('Missing auth-token');
             return res.status(500).send('Missing auth-token');
         }
 
+        //loop over stacks en bruger har
         for (let stack of stacks) {
             const containerId = stack.portainer_id;
-            //const containerStatus = await getContainerStatus(authToken, containerId);
-            //stack.containerStatus = containerStatus;
-            //console.log(stacks.Id);
 
             if (!containerId) {
                 console.log(`Stack with ID ${stack.project_name} has no Portainer ID.`);
                 stack.containerStatus = 'Unknown';
             } else {
                 const containerStatus = await getContainerStatus(authToken, containerId);
-                //console.log("Container Status for", containerId, "linje58");
                 stack.containerStatus = containerStatus;
             }
         }
 
+        //Viser navn, efternavn og email på den bruger, som er logget ind
         res.render('projects', {
             stacks,
             navigation: {
@@ -85,11 +77,11 @@ exports.getStack = async (req, res) => {
             }
         });
     } catch (error) {
-        console.error("Error:", error);
         res.status(500).send('Server Error');
     }
 };
 
+//Log ind til portainer gennem auth
 async function getAuthToken() {
     try {
         const response = await axios.post('https://portainer.kubelab.dk/api/auth', {
@@ -105,29 +97,28 @@ async function getAuthToken() {
     }
 }
 
-
+//Funktion til at slette et projekt
 exports.deleteStack = async (req, res) => {
     try {
         const project_id = req.body.project_id;
         const userId = req.session.user.user_id;
-        console.log("User ID:", userId);
-        console.log("Project ID:", project_id);
 
-        // Få portainer_id fra din database for dette projekt
+        // Få portainer_id fra brugerens database for dette projekt
         const project = await ProjectModel.getProjectById(project_id, userId);
         if (!project) {
-            return res.status(404).send("Project not found or permission denied.");
+            return res.status(404).send("Project not found");
         }
 
+        //det id der er på et projekt i portainer
         const portainer_id = project.portainer_id;
-        console.log("Portainer ID:", portainer_id);
 
+        //Henter JWT token fra session
         const authToken = await getAuthToken();
         if (!authToken) {
-            console.log('Missing auth-token');
             return res.status(500).send('Missing auth-token');
         }
 
+        //et API kald, som sletter et projekt ud fra id'et, der er på et projekt i portainer
         const endpointUrl = `https://portainer.kubelab.dk/api/stacks/${portainer_id}?endpointId=5`;
 
         try {
@@ -137,31 +128,23 @@ exports.deleteStack = async (req, res) => {
                 }
             });
 
-            console.log("Portainer API response:", portainerResponse.data);
-            console.log(`Portainer stack with ID ${portainer_id} has now been deleted.`);
+            console.log(`Project with portainer ID ${portainer_id} has been deleted`);
         } catch (portainerError) {
-            console.error("Error deleting stack from Portainer:", portainerError.response?.data || portainerError.message);
-            return res.status(500).send("Error deleting stack from Portainer.");
+            return res.status(500).send("Error deleting stack from Portainer");
         }
 
         const result = await ProjectModel.deleteStack(project_id, userId, portainer_id);
 
         if (result.affectedRows === 0) {
-            return res.status(404).send("Project not found or permission denied.");
+            return res.status(404).send("Project not found");
         }
-
-   
-        console.log(`Project with ID ${project_id} has now been deleted from the database.`);
-
         res.redirect('/projects');
     } catch (error) {
-        console.error("Error deleting project:", error.message);
-        console.error("Stack trace:", error.stack);
-        res.status(500).send("Error deleting project.");
+        res.status(500).send("Error deleting project in either database or portainer");
     }
 };
 
-
+//Funktion til at lave et projekt
 exports.createStack = async (req, res) => {
     try {
         const { project_name, url, template_id, group_id } = req.body;
@@ -173,22 +156,20 @@ exports.createStack = async (req, res) => {
 
         const userId = req.session.user ? req.session.user.user_id : null;
         if (!userId) {
-            console.log('Bruger ikke logget ind');
             return res.status(400).send('Bruger ikke logget ind');
         }
 
         const token = req.session.user.token;
         if (!token) {
-            console.log('Manglende JWT-token');
             return res.status(401).send('Manglende JWT-token');
         }
 
         const authToken = await getAuthToken();
         if (!authToken) {
-            console.log('Mangler auth-token fra Portainer API');
             return res.status(500).send('Mangler auth-token fra Portainer API');
         }
 
+        //data omkring et projekt, som sendes med i API kaldet
         const stackData = {
             fromTemplate: false,
             name: project_name,
@@ -217,6 +198,7 @@ exports.createStack = async (req, res) => {
             swarmId: "v1pkdou24tzjtncewxhvpmjms"
         };
 
+        //API kald til at oprette et projekt
         const portainerUrl = "https://portainer.kubelab.dk/api/stacks/create/swarm/string";
         const response = await axios.post(portainerUrl, stackData, {
             params: { endpointId: 5 },
@@ -228,7 +210,7 @@ exports.createStack = async (req, res) => {
 
         console.log("Portainer API-svar:", response.data);
 
-        // Gem stack i din database og brug portainer_id
+        // Gem stack i brugerens database og brug portainer_id
         const portainer_id = response.data.Id; // Dette er Portainer ID'et for den nye stack
         const stacks = await ProjectModel.createStack({
             project_name,
@@ -242,7 +224,6 @@ exports.createStack = async (req, res) => {
 
         res.redirect('/projects'); 
     } catch (error) {
-        console.log("Fejl i createStack:", error);
         res.status(500).send('Server Error: Kunne ikke oprette stack.');
     }
 };

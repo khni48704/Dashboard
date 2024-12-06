@@ -1,5 +1,6 @@
 const db = require('../config/db.js');
 
+//Henter projekter fra databasen ud fra SQL
 exports.getStack = async (email) => {
     const [rows] = await db.query(
         `SELECT 
@@ -36,6 +37,7 @@ exports.getStack = async (email) => {
     return rows;
 };
 
+//Henter template navne fra databasen
 exports.getTemplate = async (template) => {
     const [rows] = await db.execute(
         `SELECT template_id FROM Template WHERE template = ?`,
@@ -44,6 +46,7 @@ exports.getTemplate = async (template) => {
     return rows[0].template_id;
 }
 
+//Henter gruppe navne fra databasen
 exports.getGroup = async (group_name) => {
     const [rows] = await db.execute(
         `SELECT group_id FROM  \`Group\` WHERE group_name = ?`,
@@ -52,6 +55,7 @@ exports.getGroup = async (group_name) => {
     return rows[0].group_id;
 }
 
+//Opretter en stack i databasen ved brug af SQL
 exports.createStack = async (stack) => {
     const [result] = await db.execute(
         `INSERT INTO Project (project_name, url, user_id, project_id, template_id, create_date, group_id, portainer_id) 
@@ -70,6 +74,7 @@ exports.createStack = async (stack) => {
     return result;
 };
 
+//Finder et projekt ud fra dets ID
 exports.getProjectById = async (project_id, userId) => {
     const [rows] = await db.execute(
         `SELECT * FROM Project WHERE project_id = ? AND user_id = ?`,
@@ -78,6 +83,7 @@ exports.getProjectById = async (project_id, userId) => {
     return rows[0]; // Returner første (eller ingen) række
 };
 
+//Sletter en stack ud fra projektets og brugerens ID
 exports.deleteStack = async (project_id, userId, portainer_id) => {
     try {
         // Slet projektet fra databasen
@@ -87,7 +93,6 @@ exports.deleteStack = async (project_id, userId, portainer_id) => {
         );
         return result;
     } catch (error) {
-        console.error("Error deleting project:", error);
-        throw new Error("Error deleting project from database");
+        throw new Error("Error deleting project from your database");
     }
 };

@@ -16,12 +16,12 @@ router.use(session({
 // Middleware der gør brugerdata tilgængelige i views
 router.use((req, res, next) => {
 
-    // Hvis brugeren er logget ind, gem brugerdata i res.locals
-    if (req.session && req.session.user) {
-        res.locals.user = req.session.user;
-    } else {
-        res.locals.user = null;
-    }
+// Hvis brugeren er logget ind, gem brugerdata i res.locals
+  if (req.session && req.session.user) {
+      res.locals.user = req.session.user;
+  } else {
+      res.locals.user = null;
+  }
     next();
 });
 
@@ -36,14 +36,14 @@ const requireAuth = (req, res, next) => {
 router.get('/projects', requireAuth, projectController.getStack);
 router.get('/createStack', requireAuth, (req, res) => res.render('createStack'));
 
+//Afslutter session
 router.post('/logout', (req, res) => {
-    console.log('Forsøg på at logge ud:', req.session.user ? req.session.user.email : 'Ingen session');
+    console.log('Logged out of', req.session.user ? req.session.user.email : 'Ingen session');
     req.session.destroy((err) => {
         if (err) {
-            console.error('Fejl ved destruktion af session:', err);
-            return res.status(500).send('Fejl ved logout');
+            return res.status(500).send('Failed to log oud');
         }
-        console.log('Session destrueret');
+        console.log('Session destroyed');
         res.redirect('/');
     });
 });
@@ -57,6 +57,8 @@ router.get('/stacks', projectController.getStack);
 router.post('/add-project', projectController.createStack);
 
 router.post('/delete-project', requireAuth, projectController.deleteStack);
+
+router.post('/changePassword', requireAuth, userController.changePassword);
 
 router.get('/', (req, res) => {
     res.render('index.hbs');
@@ -101,8 +103,6 @@ router.get('/navigation', (req, res) => {
 router.get('/changePassword', (req, res) => {
     res.render('changePassword')
 });
-
-router.post('/changePassword', requireAuth, userController.changePassword);
 
 
 module.exports = router;
