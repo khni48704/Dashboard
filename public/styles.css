@@ -646,22 +646,21 @@ a:hover #restart-animation {
 
     
 .navlist-mobile-wrap {
-    display: flex;  /* Keep it visible for the animation */
-    overflow: hidden;  /* Hide the content that goes beyond max-height */
-    max-height: 0;  /* Initially collapsed */
+    display: flex; 
+    overflow: hidden; 
+    max-height: 0; 
     opacity: 0;
-    visibility: hidden;  /* Initially hidden */
+    visibility: hidden;
     transition: max-height 0.5s ease, opacity 0.5s ease, visibility 0s ease 0.5s;
 }
 
 .navlist-mobile-wrap.open {
-    max-height: 500px;  /* Set to a value that matches or exceeds your content height */
+    max-height: 500px;  
     opacity: 1;
-    visibility: visible;  /* Make it visible during animation */
+    visibility: visible; 
     transition: max-height 0.5s ease, opacity 0.5s ease, visibility 0s ease 0s;
 }
 
-/* Initial collapsed state for .nav-user */
 .nav-user {
     border-bottom: none;
     padding-bottom: 0;
@@ -669,7 +668,6 @@ a:hover #restart-animation {
     transition: border-bottom 0.3s ease, padding-bottom 0.3s ease, margin-bottom 0.3s ease;
 }
 
-/* Expanded state for .nav-user */
 .nav-user.expanded {
     border-bottom: solid 1px #ccc;
     padding-bottom: 20px;
@@ -737,6 +735,10 @@ a:hover #restart-animation {
     }
 
     .section-main {
+        margin-top: 100px;
+    }
+
+    .section-secondary {
         margin-top: 100px;
     }
 
