@@ -149,6 +149,7 @@ exports.createStack = async (req, res) => {
         const { project_name, url, template_id, group_id } = req.body;
 
         const templateIdFound = await ProjectModel.getTemplate(template_id);
+        const templateContentFound = await ProjectModel.getContent(template_id);
         const groupIdFound = await ProjectModel.getGroup(group_id);
 
         console.log('Session ved oprettelse af stack:', req.session.user);
@@ -168,37 +169,48 @@ exports.createStack = async (req, res) => {
             return res.status(500).send('Mangler auth-token fra Portainer API');
         }
 
-        //data omkring et projekt, som sendes med i API kaldet
-        const stackData = {
-            fromTemplate: false,
-            name: project_name,
-            stackFileContent: `{
-                "networks": {
-                    "traefik-proxy": {
-                        "external": true
-                    }
-                },
-                "services": {
-                    "test": {
-                        "image": "nginx:latest",
-                        "networks": ["traefik-proxy"],
-                        "deploy": {
-                            "labels": [
-                                "traefik.enable=true",
-                                "traefik.http.routers.dashboard.rule=Host(\`\${url}\`)",
-                                "traefik.http.routers.dashboard.entrypoints=web,websecure",
-                                "traefik.http.routers.dashboard.tls.certresolver=letsencrypt",
-                                "traefik.http.services.dashboard.loadbalancer.server.port=80"
-                            ]
-                        }
-                    }
-                }
-            }`,
-            swarmId: "v1pkdou24tzjtncewxhvpmjms"
-        };
+        //laver random tekst til CHANGEME og SUBDOMAIN02
+        function randomChangeMe(length) {
+            const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let result = "";
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            console.log(result);
+            return result;
+        }
 
+        var randomChangeMe00 = randomChangeMe(15);
+        var randomChangeMe01 = randomChangeMe(15);
+        var randomChangeMe02 = randomChangeMe(15);
+        var randomSubdomain = randomChangeMe(15);
+
+
+
+        let templateContent = templateContentFound;
+
+        //wordpress
+        templateContent = templateContent.replaceAll("CHANGEME01", randomChangeMe01);
+        templateContent = templateContent.replaceAll("CHANGEME02", randomChangeMe02);
+        templateContent = templateContent.replaceAll("SUBDOMAIN01", url);
+        templateContent = templateContent.replaceAll("SUBDOMAIN02", randomSubdomain);
+
+        //nginx
+        templateContent = templateContent.replaceAll("CHANGEME", randomChangeMe00);
+        templateContent = templateContent.replaceAll("SUBDOMAIN", url);
+        
+
+        console.log(templateContent);
+     
         //API kald til at oprette et projekt
         const portainerUrl = "https://portainer.kubelab.dk/api/stacks/create/swarm/string";
+        stackData = {
+            name: project_name,
+            stackFileContent: templateContent,
+            endpointId: 5,
+            swarmId: "v1pkdou24tzjtncewxhvpmjms"
+        }
+
         const response = await axios.post(portainerUrl, stackData, {
             params: { endpointId: 5 },
             headers: {
@@ -223,6 +235,7 @@ exports.createStack = async (req, res) => {
 
         res.redirect('/projects'); 
     } catch (error) {
+        console.log(error);
         res.status(500).send('Server Error: Kunne ikke oprette stack.');
     }
 };

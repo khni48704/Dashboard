@@ -15,6 +15,7 @@ exports.getStack = async (email) => {
             Project.portainer_id,
             Users.group_id,
             Template.template,
+            Template.content,
             \`Group\`.group_name
          FROM 
             Project 
@@ -44,6 +45,14 @@ exports.getTemplate = async (template) => {
         [template]
     );
     return rows[0].template_id;
+}
+
+exports.getContent = async (template) => {
+    const [rows] = await db.execute(
+        `SELECT content FROM Template WHERE template = ?`,
+        [template]
+    );
+    return rows[0].content;
 }
 
 //Henter gruppe navne fra databasen
