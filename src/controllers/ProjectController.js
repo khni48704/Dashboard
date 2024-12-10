@@ -31,7 +31,6 @@ async function getContainerStatus(authToken, containerId) {
 
 function getInitials(email) {
     const initials = email.split('@')[0];
-    console.log(initials);
     return initials;
 }
 
@@ -62,7 +61,6 @@ exports.getStack = async (req, res) => {
         }
 
         const userInitials = getInitials(emailSent);
-        console.log(userInitials);
         //loop over stacks en bruger har
         for (let stack of stacks) {
             const containerId = stack.portainer_id;
