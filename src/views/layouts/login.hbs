@@ -1,0 +1,50 @@
+  <body>
+    <section>
+      <div class="login-wrap">
+        <div class="default-div">
+          <h1>KubeLab</h1>
+          
+             <form class="forms" id="form_login" method="POST" action="/login">
+          <input id="email" type="text" name="email" placeholder="E-mail" />
+          <input id="password" type="password" name="password" placeholder="Password" />
+          <p>Forgot your password?</p>
+          <button id="login_btn">Login</button>
+        </div>
+        </form>
+        <div class="default-div">
+          <div class="divider-wrap">
+            <div class="login-divider"></div>
+            <p class="no-wrap">Don't have an account?</p>
+            <div class="login-divider"></div>
+          </div>
+          <button ><a href="/layouts/createAccount">Sign up</button>
+        </div>
+      </div>
+    </section>
+  </body>
+  
+<script>
+const loginForm = document.getElementById('form_login');
+loginForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+
+        if (response.redirected) {
+            window.location.href = response.url;
+        } else {
+            console.log('Forkert e-mail eller adgangskode.');
+        }
+    } catch (error) {
+        console.error('Fejl:', error);
+    }
+});
+</script>

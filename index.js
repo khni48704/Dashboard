@@ -9,7 +9,7 @@ const exphbs = require('express-handlebars'); //Library med templates - er insta
 //Gør så vi skriver .hbs på handlebars filerne
 app.engine('hbs', exphbs.engine({
     extname: '.hbs',
-    defaultLayout: false
+    defaultLayout: 'index'
 }))
 
 //Fortæller xpress-applikationen, at den skal bruge handlebars

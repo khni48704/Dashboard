@@ -1,51 +1,22 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <title>Kubelab</title>
+    <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet"> 
     <link
       href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
 </head>
-<body class="body-flex">
-    {{> navigation}}
-    <section class="section-secondary">
-        <div class="flex-div">
-            <div class="default-div">
-                <h1>Settings</h1>
 
-                <h3>Change name</h3>
-                {{#if user}}
-                <input type="text" placeholder="{{user.first_name}} ">
-                <input type="text" placeholder="{{user.last_name}}">
-                <button><a>Save name</a></button>
-                {{else}}
-                    <p>Ingen brugerdata tilgængelige.</p>
-                {{/if}}
-            </div>
+{{{body}}}
 
-            <div class="default-div">
-                <h3>Change password</h3>
-                <p>To keep up the safety of your account, please change your password once every three months.</p>
-                <button><a href="/changePassword">Change password</a></button>                
-                <br>
-                <h3>Dark/light mode</h3>
-                <button id="theme-toggle" aria-label="Toggle Theme">
-                    <span class="icon-darklightmode">🌙</span>Change mode</button>
-                <br>
-                <h3>Change font</h3>
-                <button id="change-font"><a>Change font</a></button>
-                <div class="accessibilityFont"></div>
-            </div>
-        </div>
+</html>
 
-    </section>
 
-    
-</body>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOMContentLoaded fired");
@@ -98,4 +69,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
-</html>

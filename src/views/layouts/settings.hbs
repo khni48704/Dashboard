@@ -1,0 +1,36 @@
+<body class="body-flex">
+    {{> navigation}}
+    <section class="section-secondary">
+        <div class="flex-div">
+            <div class="default-div">
+                <h1>Settings</h1>
+
+                <h3>Change name</h3>
+                {{#if user}}
+                <input type="text" placeholder="{{user.first_name}} ">
+                <input type="text" placeholder="{{user.last_name}}">
+                <button><a>Save name</a></button>
+                {{else}}
+                    <p>Ingen brugerdata tilgængelige.</p>
+                {{/if}}
+            </div>
+
+            <div class="default-div">
+                <h3>Change password</h3>
+                <p>To keep up the safety of your account, please change your password once every three months.</p>
+                <button><a href="/changePassword">Change password</a></button>                
+                <br>
+                <h3>Dark/light mode</h3>
+                <button id="theme-toggle" aria-label="Toggle Theme">
+                    <span class="icon-darklightmode">🌙</span>Change mode</button>
+                <br>
+                <h3>Change font</h3>
+                <button id="change-font"><a>Change font</a></button>
+                <div class="accessibilityFont"></div>
+            </div>
+        </div>
+
+    </section>
+
+    
+</body>

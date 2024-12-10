@@ -27,13 +27,14 @@ router.use((req, res, next) => {
 // Middleware til at tjekke om brugeren er logget ind
 const requireAuth = (req, res, next) => {
     if (!req.session.user) {
-        return res.redirect('/');
+        return res.redirect('/login');
     }
     next();
 };
 
 router.get('/projects', requireAuth, projectController.getStack);
-router.get('/createStack', requireAuth, (req, res) => res.render('createStack'));
+console.log("Linie 36");
+router.get('/layouts/createStack', requireAuth, (req, res) => res.render('createStack'));
 
 //Afslutter session
 router.post('/logout', (req, res) => {
@@ -48,7 +49,8 @@ router.post('/logout', (req, res) => {
 });
 
 //ruter til brugere og projekter
-router.get('/projects', userController.getUsers);
+//router.get('/layouts/projects', userController.getUsers);
+console.log("Linie 53");
 router.post('/add-user', userController.createUser);
 router.post('/login', userController.loginUser);
 
@@ -60,39 +62,35 @@ router.post('/delete-project', requireAuth, projectController.deleteStack);
 router.post('/changePassword', requireAuth, userController.changePassword);
 
 router.get('/', (req, res) => {
-    res.render('index.hbs');
+    res.render('layouts/login');
 });
 
 router.get('/createAccount', (req, res) => {
-    res.render('createAccount')
-});
-
-router.get('/projects', (req, res) => {
-    res.render('projects')
+    res.render('layouts/createAccount')
 });
 
 router.get('/createStack', (req, res) => {
-    res.render('createStack')
+    res.render('layouts/createStack')
 });
 
 router.get('/createTemplate', (req, res) => {
-    res.render('createTemplate')
+    res.render('layouts/createTemplate')
 })
 
 router.get('/templates', (req, res) => {
-    res.render('templates')
+    res.render('layouts/templates')
 })
 
 router.get('/groups', (req, res) => {
-    res.render('groups')
+    res.render('layouts/groups')
 })
 
 router.get('/createGroup', (req, res) => {
-    res.render('createGroup')
+    res.render('layouts/createGroup')
 })
 
 router.get('/settings', (req, res) => {
-    res.render('settings')
+    res.render('layouts/settings')
 })
 
 router.get('/navigation', (req, res) => {
@@ -100,7 +98,7 @@ router.get('/navigation', (req, res) => {
 });
 
 router.get('/changePassword', (req, res) => {
-    res.render('changePassword')
+    res.render('layouts/changePassword')
 });
 
 module.exports = router;

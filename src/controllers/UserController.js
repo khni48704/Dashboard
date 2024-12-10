@@ -7,7 +7,7 @@ exports.getUsers = async (req, res) => {
     try {
         const users = await UserModel.getUsers();
         const user = req.session.user; // hent brugeren fra sessionen
-        res.render('projects', { users, user }); // send både users og user til HBS
+        res.render('layouts/projects', { users, user }); // send både users og user til HBS
     } catch (error) {
         res.status(500).send('Server Error while getting an user');
     }

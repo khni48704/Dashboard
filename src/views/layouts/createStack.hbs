@@ -1,0 +1,33 @@
+<body class="body-flex">
+  {{> navigation}}
+   <section class="section-secondary">
+  <div class="default-div">
+    <h1>Create project</h1>
+    <form class="forms" method="POST" action="/add-project">
+      <h3>Project name</h3>
+      <input type="text" name="project_name" placeholder="Project name" required />
+      <h3>URL</h3>
+      <input type="text" name="url" placeholder="URL" required />
+
+      <h3>Select group</h3>
+      <select name="group_id" required>
+        <option value="WUOE24">WUOE24</option>
+        <option value="WUOE23">WUOE23</option>
+      </select>  
+      <h3>Select template type</h3>
+      <select name="template_id" required>
+        <option value="wordpress" name="Wordpress">Wordpress</option>
+        <option value="nginx" name="Nginx">Nginx</option>
+
+
+      </select>
+      
+ <!-- Disse to linjer er skjulte, da jeg gerne vil sende den data med over i poratiner, hvis vi skal bruge det senere til at hente, kan fjernes hvis ikke de skal med og ikke bruges-->
+      <input type="hidden" name="groupId" value="{{user.groupId}}" />
+      <input type="hidden" name="projectId" value="{{projectId}}" /> 
+      
+      <button type="submit">Create project</button>
+    </form>
+</section>
+</body>
+</html>

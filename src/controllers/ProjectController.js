@@ -31,9 +31,12 @@ async function getContainerStatus(authToken, containerId) {
 
 //Funktion til at hente stacks fra databasen og API'et
 exports.getStack = async (req, res) => {
+    console.log(req.session.user.email);
+    console.log("her er get stacks");
     try {
         if (!req.session.user) {
-            return res.redirect('/');
+            console.log('session user');
+            return res.redirect('/login');
         }
 
         //Finder brugerens email fra den session, der er
@@ -41,7 +44,7 @@ exports.getStack = async (req, res) => {
         console.log("User email:", emailSent);
 
         const stacks = await ProjectModel.getStack(emailSent);
-
+        console.log(stacks);
         if (!stacks || stacks.lenght === 0) {
             return res.status(404).send("No stacks found");
         }
@@ -67,7 +70,7 @@ exports.getStack = async (req, res) => {
         }
 
         //Viser navn, efternavn og email på den bruger, som er logget ind
-        res.render('projects', {
+        res.render('layouts/projects', {
             stacks,
             navigation: {
                 user: {
