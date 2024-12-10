@@ -2,6 +2,7 @@ const express = require('express');
 const userController = require('../controllers/UserController');
 const projectController = require('../controllers/ProjectController');
 const router = express.Router();
+const templateController = require('../controllers/TemplateController');
 const session = require('express-session');
 
 // Opsætter vores session middleware
@@ -33,7 +34,6 @@ const requireAuth = (req, res, next) => {
 };
 
 router.get('/projects', requireAuth, projectController.getStack);
-console.log("Linie 36");
 router.get('/layouts/createStack', requireAuth, (req, res) => res.render('createStack'));
 
 //Afslutter session
@@ -49,9 +49,10 @@ router.post('/logout', (req, res) => {
 });
 
 //ruter til brugere og projekter
-console.log("Linie 53");
 router.post('/add-user', userController.createUser);
 router.post('/login', userController.loginUser);
+//router.get('/templates', templateController.getTemplate);
+
 
 router.get('/stacks', projectController.getStack);
 router.post('/add-project', projectController.createStack);
