@@ -153,13 +153,6 @@ exports.createStack = async (req, res) => {
     try {
         const { project_name, url, template_id, group_id } = req.body;
 
-        // Linje 153 - 158, tilføjer ".kubelab.dk" til url navnet brugeren bestemmer 
-        let updatedUrl = url.trim();
-
-        if (!updatedUrl.endsWith('.kubelab.dk')) {
-            updatedUrl = `${updatedUrl}.kubelab.dk`;
-        }
-
         const templateIdFound = await ProjectModel.getTemplate(template_id);
         const templateContentFound = await ProjectModel.getContent(template_id);
         const groupIdFound = await ProjectModel.getGroup(group_id);
@@ -181,8 +174,8 @@ exports.createStack = async (req, res) => {
             return res.status(500).send('Mangler auth-token fra Portainer API');
         }
 
-        // Laver random tekst til CHANGEME og SUBDOMAIN02
-        function randomChangeMe(length) {
+         //laver random tekst til CHANGEME og SUBDOMAIN02
+         function randomChangeMe(length) {
             const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             let result = "";
             for (let i = 0; i < length; i++) {
@@ -199,26 +192,27 @@ exports.createStack = async (req, res) => {
 
         let templateContent = templateContentFound;
 
-        // Wordpress
+        //wordpress
         templateContent = templateContent.replaceAll("CHANGEME01", randomChangeMe01);
         templateContent = templateContent.replaceAll("CHANGEME02", randomChangeMe02);
-        templateContent = templateContent.replaceAll("SUBDOMAIN01", updatedUrl); // Brug den opdaterede url
+        templateContent = templateContent.replaceAll("SUBDOMAIN01", url);
         templateContent = templateContent.replaceAll("SUBDOMAIN02", randomSubdomain);
 
-        // Nginx
+        //nginx
         templateContent = templateContent.replaceAll("CHANGEME", randomChangeMe00);
-        templateContent = templateContent.replaceAll("SUBDOMAIN", updatedUrl); // Brug den opdaterede url
+        templateContent = templateContent.replaceAll("SUBDOMAIN", url);
+        
 
         console.log(templateContent);
      
-        // API kald til at oprette et projekt
+        //API kald til at oprette et projekt
         const portainerUrl = "https://portainer.kubelab.dk/api/stacks/create/swarm/string";
         stackData = {
             name: project_name,
             stackFileContent: templateContent,
             endpointId: 5,
             swarmId: "v1pkdou24tzjtncewxhvpmjms"
-        };
+        }
 
         const response = await axios.post(portainerUrl, stackData, {
             params: { endpointId: 5 },
@@ -234,7 +228,7 @@ exports.createStack = async (req, res) => {
         const portainer_id = response.data.Id; // Dette er Portainer ID'et for den nye stack
         const stacks = await ProjectModel.createStack({
             project_name,
-            url: updatedUrl, // Gem den opdaterede url i databasen
+            url,
             userId,
             template_id: templateIdFound,
             group_id: groupIdFound,
