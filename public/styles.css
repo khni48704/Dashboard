@@ -357,6 +357,27 @@ body.dark-mode .nav-button:hover {
     gap: 10px;
 }
 
+body.dark-mode .status svg path {
+    stroke: var(--text-dark);
+}
+
+body.dark-mode .icon-fill {
+    fill: var(--text-dark);
+}
+
+body.dark-mode .projects:hover svg path {
+    stroke: var(--text-light);
+}
+
+body.dark-mode .projects:hover .icon-fill {
+    fill: var(--text-light);
+}
+
+body.dark-mode .projects:hover .projects-dropdown {
+    border-color: var(--text-light);
+}
+
+
 body.dark-mode .projects {
     background-color: var(--input-bg-dark);
 }
@@ -387,14 +408,6 @@ body.dark-mode .projects:hover h4 {
 
 .projects .icon-fill {
     fill: var(--text-light);
-}
-
-body.darkmode .projects .icon-stroke {
-    stroke: var(--text-dark)
-}
-
-.projects:hover .icon-fill {
-    fill: #160F29;
 }
 
 
