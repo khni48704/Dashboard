@@ -171,8 +171,8 @@ exports.createStack = async (req, res) => {
             return res.status(500).send('Mangler auth-token fra Portainer API');
         }
 
-        //laver random tekst til CHANGEME og SUBDOMAIN02
-        function randomChangeMe(length) {
+         //laver random tekst til CHANGEME og SUBDOMAIN02
+         function randomChangeMe(length) {
             const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             let result = "";
             for (let i = 0; i < length; i++) {
@@ -186,8 +186,6 @@ exports.createStack = async (req, res) => {
         var randomChangeMe01 = randomChangeMe(15);
         var randomChangeMe02 = randomChangeMe(15);
         var randomSubdomain = randomChangeMe(15);
-
-
 
         let templateContent = templateContentFound;
 
@@ -220,7 +218,6 @@ exports.createStack = async (req, res) => {
                 "Content-Type": "application/json"
             }
         });
-        
 
         console.log("Portainer API-svar:", response.data);
 
