@@ -27,7 +27,7 @@ router.use((req, res, next) => {
 // Middleware til at tjekke om brugeren er logget ind
 const requireAuth = (req, res, next) => {
     if (!req.session.user) {
-        return res.redirect('/login');
+        return res.redirect('/');
     }
     next();
 };
@@ -49,7 +49,6 @@ router.post('/logout', (req, res) => {
 });
 
 //ruter til brugere og projekter
-//router.get('/layouts/projects', userController.getUsers);
 console.log("Linie 53");
 router.post('/add-user', userController.createUser);
 router.post('/login', userController.loginUser);

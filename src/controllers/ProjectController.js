@@ -29,6 +29,11 @@ async function getContainerStatus(authToken, containerId) {
     }
 }
 
+function getInitials(email) {
+    const initials = email.split('@')[0];
+    return initials;
+}
+
 //Funktion til at hente stacks fra databasen og API'et
 exports.getStack = async (req, res) => {
     console.log(req.session.user.email);
@@ -55,10 +60,12 @@ exports.getStack = async (req, res) => {
             return res.status(500).send('Missing auth-token');
         }
 
+        const userInitials = getInitials(emailSent);
         //loop over stacks en bruger har
         for (let stack of stacks) {
             const containerId = stack.portainer_id;
             stack.create_date = moment(stack.create_date).format('DD-MM-YYYY');
+            stack.userInitials = userInitials;
 
             if (!containerId) {
                 console.log(`Stack with ID ${stack.project_name} has no Portainer ID.`);
