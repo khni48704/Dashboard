@@ -1,3 +1,7 @@
+html {
+    height: -webkit-fill-available;
+}
+
 :root {
     --background-light: #FFFFFF;
     --background-dark: #121212;
@@ -24,6 +28,7 @@ body {
 
 .body-flex {
     display: flex;
+    height: -webkit-fill-available;
 }
 
 body.dark-mode {
@@ -607,6 +612,8 @@ a:hover #restart-animation {
 
     .body-flex {
         flex-direction: column;
+        height: -webkit-fill-available;
+
     }
 
     .section-main {
