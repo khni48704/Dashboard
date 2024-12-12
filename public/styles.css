@@ -459,6 +459,29 @@ body.dark-mode .projects-dropdown {
     display: flex;
 }
 
+.divider-wrap {
+    margin-top: 60px;
+}
+
+.line {
+    width: 70%;
+    height: 2px;
+    background-color: #f1f1f1;
+}
+
+.no-wrap{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.login-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
 .projects-button {
     display: flex;
     align-items: center;
