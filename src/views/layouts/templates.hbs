@@ -5,12 +5,9 @@
           <h1>Templates</h1>
           <h3>Your templates</h3>
           <select>
-            <option value="Wordpress">Wordpress</option>
-            <option value="Ngnix">Ngnix</option>
-
-      {{#each templates}}
-      {{this.template}}
-      {{/each}}
+            {{#each templates}}
+            <option value="templates">{{this.template}}</option>
+            {{/each}}
           </select>
           <h3>Create new template</h3>
           <button><a href="/createTemplate">Create new Template</a></button>

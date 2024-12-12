@@ -51,7 +51,7 @@ router.post('/logout', (req, res) => {
 //ruter til brugere og projekter
 router.post('/add-user', userController.createUser);
 router.post('/login', userController.loginUser);
-//router.get('/templates', templateController.getTemplate);
+router.get('/templates', templateController.getTemplate);
 
 
 router.get('/stacks', projectController.getStack);

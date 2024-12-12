@@ -3,7 +3,8 @@ const TemplateModel = require('../models/TemplateModel');
 exports.getTemplate = async (req, res) => {
     try {
         const templates = await TemplateModel.getTemplates();
-        res.render('layouts/templates');
+        console.log("templates:", templates)
+        res.render('layouts/templates', { templates });
     } catch (error) {
         console.log(error);
     }
