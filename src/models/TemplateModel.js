@@ -2,6 +2,7 @@ const db = require('../config/db.js');
 
 exports.getTemplates = async () => {
     const [rows, fields] = await db.query('SELECT template, content FROM Template');
+    console.log(rows);
     return rows;
 }
 
