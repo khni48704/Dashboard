@@ -56,6 +56,7 @@ router.get('/templates', templateController.getTemplate);
 
 router.get('/stacks', projectController.getStack);
 router.post('/add-project', projectController.createStack);
+router.post('/add-template', templateController.createTemplate);
 
 router.post('/delete-project', requireAuth, projectController.deleteStack);
 

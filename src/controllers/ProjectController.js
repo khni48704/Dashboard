@@ -246,6 +246,6 @@ exports.createStack = async (req, res) => {
         res.redirect('/projects'); 
     } catch (error) {
         console.log(error);
-        res.status(500).send('Server Error: Kunne ikke oprette stack.');
+        res.status(500).send('Error from creating template');
     }
 };
