@@ -1,7 +1,6 @@
 const ProjectModel = require('../models/ProjectModel');
 //et library der håndtere HHTP request fra både browser og node.js environments
 const axios = require('axios');
-const moment = require('moment');
 
 // Funktion til at hente containerens status fra Portainer API
 async function getContainerStatus(authToken, containerId) {
@@ -60,11 +59,19 @@ exports.getStack = async (req, res) => {
             return res.status(500).send('Missing auth-token');
         }
 
+        const newDate = (dateToString) => {
+            const date = new Date(dateToString);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = String(date.getFullYear()).slice(-2);
+            return `${day}-${month}-${year}`;
+        }
+
         const userInitials = getInitials(emailSent);
         //loop over stacks en bruger har
         for (let stack of stacks) {
             const containerId = stack.portainer_id;
-            stack.create_date = moment(stack.create_date).format('DD-MM-YYYY');
+            stack.create_date = newDate(stack.create_date);
             stack.userInitials = userInitials;
 
             if (!containerId) {
