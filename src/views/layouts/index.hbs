@@ -20,53 +20,38 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOMContentLoaded fired");
-    const themeToggle = document.getElementById("theme-toggle");
-    const changeFont = document.getElementById("change-font");
-    const fontElement = document.querySelector(".accessibilityFont");
-    const savedFont = localStorage.getItem("font");
     const body = document.body;
 
-        console.log("savedFont:", savedFont);
-
-
+    const savedFont = localStorage.getItem("font");
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-        body.classList.add(savedTheme);
-        themeToggle.querySelector(".icon-darklightmode").textContent = savedTheme === "dark-mode" ? "☀️" : "🌙";
-    }
 
-    themeToggle.addEventListener("click", () => {
-        const isDarkMode = body.classList.toggle("dark-mode");
-        themeToggle.querySelector(".icon-darklightmode").textContent = isDarkMode ? "☀️" : "🌙";
-
-        localStorage.setItem("theme", isDarkMode ? "dark-mode" : "light-mode");
-    });
-    
-    
     if (savedFont === "isAccessible") {
         body.classList.add("isAccessible");
-        if (fontElement) {
-            fontElement.textContent = "";
-            console.log("1");
-        }
     } else {
         body.classList.remove("isAccessible");
-        if (fontElement) {
-            fontElement.textContent = "";
-            console.log("2");
-        }
     }
 
-    changeFont.addEventListener("click", () => {
-        const isAccessible = body.classList.toggle("isAccessible");
-        console.log("3");
-        if (fontElement) {
-            fontElement.textContent = isAccessible ? "" : "";
-            console.log("4");
-        }
+    if (savedTheme === "dark-mode") {
+        body.classList.add("dark-mode");
+    } else {
+        body.classList.remove("dark-mode");
+    }
 
-        localStorage.setItem("font", isAccessible ? "isAccessible" : "notAccessible");
-    });
+    const themeToggle = document.getElementById("theme-toggle");
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            const isDarkMode = body.classList.toggle("dark-mode");
+            themeToggle.querySelector(".icon-darklightmode").textContent = isDarkMode ? "☀️" : "🌙";
+            localStorage.setItem("theme", isDarkMode ? "dark-mode" : "light-mode");
+        });
+    }
+
+    const changeFont = document.getElementById("change-font");
+    if (changeFont) {
+        changeFont.addEventListener("click", () => {
+            const isAccessible = body.classList.toggle("isAccessible");
+            localStorage.setItem("font", isAccessible ? "isAccessible" : "notAccessible");
+        });
+    }
 });
 </script>
