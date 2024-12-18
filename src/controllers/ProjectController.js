@@ -1,5 +1,5 @@
 const ProjectModel = require('../models/ProjectModel');
-//et library der håndtere HHTP request fra både browser og node.js environments
+//et library der håndtere HTTP request fra både browser og node.js environments
 const axios = require('axios');
 
 // Funktion til at hente containerens status fra Portainer API
@@ -108,7 +108,7 @@ async function getAuthToken() {
         console.log('Auth Token:', response.data.jwt);
         return response.data.jwt;
     } catch (error) {
-        console.error('Fejl ved hentning af auth-token:', error.message);
+        console.error('Error getting auth-token:', error.message);
         return null;
     }
 }
@@ -169,21 +169,21 @@ exports.createStack = async (req, res) => {
         const templateContentFound = await ProjectModel.getContent(template_id);
         const groupIdFound = await ProjectModel.getGroup(group_id);
 
-        console.log('Session ved oprettelse af stack:', req.session.user);
+        console.log('Session during creating stack:', req.session.user);
 
         const userId = req.session.user ? req.session.user.user_id : null;
         if (!userId) {
-            return res.status(400).send('Bruger ikke logget ind');
+            return res.status(400).send('User not found');
         }
 
         const token = req.session.user.token;
         if (!token) {
-            return res.status(401).send('Manglende JWT-token');
+            return res.status(401).send('Missing JWT-token');
         }
 
         const authToken = await getAuthToken();
         if (!authToken) {
-            return res.status(500).send('Mangler auth-token fra Portainer API');
+            return res.status(500).send('Missing auth-token from Portainer API');
         }
 
          //laver random tekst til CHANGEME og SUBDOMAIN02

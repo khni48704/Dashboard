@@ -53,11 +53,11 @@ exports.loginUser = async (req, res) => {
                 token: token // Gem token i sessionen
             };
 
-            console.log('Session oprettet:', req.session.user);  // Log sessionen her
+            console.log('Session created:', req.session.user);  // Log sessionen her
 
             return res.redirect('/projects');  // Omdirigér til en beskyttet rute
         } else {
-            return res.status(401).render('index', { error: "Ugyldig email eller password" });
+            return res.status(401).render('index', { error: "Invalid email or password" });
         }
     } catch (error) {
         return res.status(500).render('index', { error: 'Server error' });
