@@ -36,10 +36,8 @@ function getInitials(email) {
 //Funktion til at hente stacks fra databasen og API'et
 exports.getStack = async (req, res) => {
     console.log(req.session.user.email);
-    console.log("her er get stacks");
     try {
         if (!req.session.user) {
-            console.log('session user');
             return res.redirect('/login');
         }
 
